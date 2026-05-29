@@ -1,8 +1,11 @@
-# OurDeskPet Documentation Index
+# RinaDesk Agent Documentation Index
 
 Last updated: 2026-05-28
 
 This folder is the central home for project management documentation.
+
+Product-facing name: `RinaDesk Agent`.
+Repository/local project name: `OurDeskPet`.
 
 Use this structure:
 

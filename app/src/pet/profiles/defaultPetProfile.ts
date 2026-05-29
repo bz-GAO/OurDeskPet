@@ -4,31 +4,31 @@ const rinaPlaceholderImage = "/assets/rina/Rina_bot_cutout.png";
 
 export const defaultPetProfile: PetProfile = {
   id: "default-rina-placeholder",
-  displayName: "OurDeskPet",
+  displayName: "RinaDesk Agent",
   initialState: "idle",
   states: {
     idle: {
-      message: "OurDeskPet",
+      message: "RinaDesk Agent",
       image: rinaPlaceholderImage,
-      imageAlt: "OurDeskPet placeholder character",
+      imageAlt: "RinaDesk Agent placeholder character",
       tone: "neutral",
     },
     follow: {
       message: "I am here.",
       image: rinaPlaceholderImage,
-      imageAlt: "OurDeskPet following the pointer",
+      imageAlt: "RinaDesk Agent following the pointer",
       tone: "active",
     },
     talk: {
       message: "Ready to talk.",
       image: rinaPlaceholderImage,
-      imageAlt: "OurDeskPet ready to talk",
+      imageAlt: "RinaDesk Agent ready to talk",
       tone: "talk",
     },
     sleep: {
       message: "Zzz...",
       image: rinaPlaceholderImage,
-      imageAlt: "OurDeskPet sleeping",
+      imageAlt: "RinaDesk Agent sleeping",
       tone: "muted",
     },
   },

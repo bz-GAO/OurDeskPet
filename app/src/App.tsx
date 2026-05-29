@@ -48,7 +48,7 @@ function App() {
 
       const dialogueWindow = new WebviewWindow("dialogue", {
         url: "/?view=dialogue",
-        title: "OurDeskPet Dialogue",
+        title: "RinaDesk Agent Dialogue",
         width: 920,
         height: 680,
         minWidth: 680,

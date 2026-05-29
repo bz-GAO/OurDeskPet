@@ -1,10 +1,12 @@
-# OurDeskPet Project Plan
+# RinaDesk Agent Project Plan
 
-Last updated: 2026-05-28
+Last updated: 2026-05-29
 
 ## 1. Project Goal
 
-OurDeskPet is a Windows desktop intelligent pet application.
+RinaDesk Agent is a Windows desktop multimodal AI companion application.
+
+The repository and local project path stay named `OurDeskPet` for continuity. `RinaDesk Agent` is the product-facing name used in the application, documentation, and resume/project presentation.
 
 The project starts as a traditional desktop pet, then grows into an LLM-powered desktop companion that can chat, receive screenshots, and interact with selected screen regions.
 

@@ -2,7 +2,7 @@
 name = "our-desk-pet"
 version = "0.1.0"
 description = "An intelligent desktop pet"
-authors = ["OurDeskPet contributors"]
+authors = ["RinaDesk Agent contributors"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

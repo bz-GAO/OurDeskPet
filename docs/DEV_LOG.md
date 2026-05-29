@@ -563,3 +563,25 @@ Remaining before publishing:
 - Review Rina image asset rights before a public repository.
 - Create the GitHub repository and add the remote.
 - Stage, commit, and push.
+
+## 2026-05-29
+
+### Product Naming Pass
+
+Selected `RinaDesk Agent` as the product-facing name for project presentation and resume use.
+
+Decision:
+
+- Keep the repository and local path as `OurDeskPet` for continuity.
+- Use `RinaDesk Agent` in the app title, pet profile display, README, and project documentation.
+- Position the project as a desktop multimodal AI companion rather than only a traditional desktop pet.
+
+Implemented:
+
+- Updated root `README.md`.
+- Updated `docs\PROJECT_PLAN.md` and `docs\README.md`.
+- Updated app-local README.
+- Updated Tauri `productName` and main window title.
+- Updated dialogue window title.
+- Updated default pet profile display name and image alt text.
+- Updated npm package name to `rinadesk-agent`.

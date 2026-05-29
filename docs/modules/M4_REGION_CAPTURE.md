@@ -51,10 +51,10 @@ M4 attachment foundation:
 The accepted M4 route is Windows system clipping plus clipboard handoff:
 
 1. User opens the dialogue tool popover and chooses `Capture`.
-2. OurDeskPet launches Windows system screen clipping.
+2. RinaDesk Agent launches Windows system screen clipping.
 3. User selects a region with the OS clipping surface.
 4. Windows places the screenshot on the clipboard.
-5. OurDeskPet polls the clipboard and attaches the image to the dialogue composer.
+5. RinaDesk Agent polls the clipboard and attaches the image to the dialogue composer.
 6. A short prompt is prepared, and the user can edit it before sending.
 
 Alternative user flow:

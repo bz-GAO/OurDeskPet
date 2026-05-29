@@ -1,6 +1,8 @@
-# OurDeskPet
+# RinaDesk Agent
 
-OurDeskPet is a Windows desktop intelligent pet prototype built with Tauri 2, React, TypeScript, and Rust.
+RinaDesk Agent is a Windows desktop multimodal AI companion prototype built with Tauri 2, React, TypeScript, and Rust.
+
+The repository and local project path remain `OurDeskPet`, while the product-facing name is `RinaDesk Agent`.
 
 The current prototype includes:
 

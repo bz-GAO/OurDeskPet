@@ -1,6 +1,6 @@
-# OurDeskPet App
+# RinaDesk Agent App
 
-This is the Tauri 2 + React + TypeScript application for OurDeskPet.
+This is the Tauri 2 + React + TypeScript application for RinaDesk Agent.
 
 Project-level planning lives in:
 
