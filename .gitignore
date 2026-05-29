@@ -1,0 +1,38 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Frontend dependencies and build output
+app/node_modules/
+app/dist/
+app/dist-ssr/
+
+# Rust/Tauri build output
+app/src-tauri/target/
+target/
+
+# Local logs and temporary files
+logs/
+*.log
+*.tmp
+*.temp
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Python local environment/utilities
+.venv/
+__pycache__/
+*.pyc
+
+# Project-local generated or experimental output
+experiments/output/
+experiments/tmp/
+
+# External cache reminder:
+# E:\OurDeskPetBuildCache lives outside this repository and should never be copied in.
