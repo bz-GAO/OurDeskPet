@@ -1,2 +1,1 @@
-[build]
-target-dir = "E:/OurDeskPetBuildCache/cargo-target"
+# Use CARGO_TARGET_DIR for machine-specific build caches; Cargo defaults remain portable.

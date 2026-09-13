@@ -1,11 +1,15 @@
+mod pet_placement;
+mod api_profiles;
+mod pet_region;
+mod sse;
 use arboard::{Clipboard, Error as ClipboardError};
 use base64::{engine::general_purpose::STANDARD as BASE64_STANDARD, Engine};
-use futures_util::StreamExt;
+use futures_util::{StreamExt, future::{AbortHandle, Abortable}};
 use reqwest::header::{AUTHORIZATION, CONTENT_TYPE};
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::{
-    collections::{HashMap, HashSet},
+    collections::HashMap,
     env,
     error::Error,
     fs,
@@ -79,6 +83,7 @@ struct ChatDeltaEvent {
 #[serde(rename_all = "camelCase")]
 struct ChatCompleteEvent {
     request_id: String,
+    status: String,
 }
 
 #[derive(Debug, Serialize, Clone)]
@@ -100,14 +105,14 @@ struct LlmConfig {
 
 #[derive(Default)]
 struct ChatCancelState {
-    canceled_requests: Mutex<HashSet<String>>,
+    active_requests: Mutex<HashMap<String, AbortHandle>>,
 }
 
 #[tauri::command]
-fn llm_config_status(app: tauri::AppHandle) -> LlmConfigStatus {
-    let config = load_llm_config(Some(&app));
+fn llm_config_status(app: tauri::AppHandle) -> Result<LlmConfigStatus,String> {
+    let config = load_llm_config(Some(&app))?;
 
-    LlmConfigStatus {
+    Ok(LlmConfigStatus {
         has_api_key: config
             .api_key
             .as_ref()
@@ -116,7 +121,7 @@ fn llm_config_status(app: tauri::AppHandle) -> LlmConfigStatus {
         model: config.model,
         model_options: config.model_options,
         prompt_source: config.prompt_source,
-    }
+    })
 }
 
 #[tauri::command]
@@ -125,24 +130,36 @@ async fn chat_stream(
     state: State<'_, ChatCancelState>,
     request: ChatStreamRequest,
 ) -> Result<(), String> {
-    let config = load_llm_config(None);
+    let config = load_llm_config(Some(window.app_handle()))?;
 
-    let result = stream_openai_compatible_chat(&window, &state, &request, &config).await;
-    if let Err(error) = &result {
-        let _ = emit_chat_error(&window, &request.request_id, error);
+    let (abort, registration) = AbortHandle::new_pair();
+    {
+        let mut active = state.active_requests.lock().map_err(|_| "Could not lock active requests.")?;
+        if active.contains_key(&request.request_id) { return Err("Duplicate request ID.".into()); }
+        active.insert(request.request_id.clone(), abort);
     }
-
-    result
+    let result = Abortable::new(stream_openai_compatible_chat(&window, &request, &config), registration).await;
+    let _ = window.app_handle().emit_to("main", "deskpet-speech-state", json!({"requestId":request.request_id,"active":false}));
+    state.active_requests.lock().map_err(|_| "Could not lock active requests.")?.remove(&request.request_id);
+    match result {
+        Err(_) => emit_chat_complete(&window, &request.request_id, "cancelled"),
+        Ok(Err(error)) => { let _ = emit_chat_error(&window, &request.request_id, &error); Err(error) }
+        Ok(Ok(())) => {
+            emit_chat_complete(&window, &request.request_id, "completed")?;
+            // The native producer is independent of the dialogue webview lifecycle.
+            let _ = window.app_handle().emit_to("main", "deskpet-task-event", json!({
+                "source": "chat", "taskId": request.request_id, "status": "completed"
+            }));
+            Ok(())
+        }
+    }
 }
 
 #[tauri::command]
 fn cancel_chat_stream(state: State<'_, ChatCancelState>, request_id: String) -> Result<(), String> {
-    state
-        .canceled_requests
-        .lock()
-        .map_err(|_| "Could not lock chat cancellation state.".to_string())?
-        .insert(request_id);
-
+    if let Some(abort) = state.active_requests.lock().map_err(|_| "Could not lock active requests.")?.get(&request_id) {
+        abort.abort();
+    }
     Ok(())
 }
 
@@ -281,13 +298,72 @@ fn start_windows_screen_clip() -> Result<(), String> {
     Err("System screen clipping is currently implemented for Windows only.".to_string())
 }
 
+
+#[tauri::command]
+fn reveal_pet_notification(app: tauri::AppHandle) -> Result<(), String> {
+    let pet = app.get_webview_window("main").ok_or("Pet window is unavailable.")?;
+    #[cfg(target_os = "windows")]
+    {
+        // SW_SHOWNOACTIVATE restores the pet without stealing keyboard focus.
+        // Obtain the live HWND on the UI thread, not across an asynchronous gap.
+        let ui_pet = pet.clone();
+        pet.run_on_main_thread(move || {
+            if let Ok(hwnd) = ui_pet.hwnd() {
+                #[link(name = "user32")]
+                extern "system" { fn ShowWindow(hwnd: *mut std::ffi::c_void, command: i32) -> i32; }
+                // SAFETY: HWND belongs to this live Tauri window; ShowWindow takes no borrowed buffers.
+                unsafe { ShowWindow(hwnd.0 as *mut std::ffi::c_void, 4); }
+            }
+        }).map_err(|error| error.to_string())?;
+    }
+    #[cfg(not(target_os = "windows"))]
+    { pet.unminimize().map_err(|error| error.to_string())?; pet.show().map_err(|error| error.to_string())?; }
+    Ok(())
+}
+
+
+#[tauri::command]
+async fn pet_left_button_down(window: tauri::WebviewWindow) -> Result<bool,String> {
+    if window.label() != "main" { return Err("Only the pet can check its drag gesture".into()); }
+    #[cfg(target_os="windows")]
+    {
+        #[link(name="user32")]
+        extern "system" { fn GetAsyncKeyState(key:i32)->i16; fn GetSystemMetrics(index:i32)->i32; }
+        // SAFETY: no pointers or buffers, queries only the current left mouse button.
+        return Ok(unsafe { GetAsyncKeyState(if GetSystemMetrics(23) != 0 {2} else {1}) } < 0);
+    }
+    #[cfg(not(target_os="windows"))]
+    Ok(false)
+}
+
+#[tauri::command]
+fn quit_app(app: tauri::AppHandle) { app.exit(0); }
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .manage(ChatCancelState::default())
+        .on_window_event(|window, event| {
+            if window.label()=="dialogue" && matches!(event,tauri::WindowEvent::Destroyed) {
+                if let Ok(active)=window.app_handle().state::<ChatCancelState>().active_requests.lock() {
+                    for abort in active.values(){abort.abort();}
+                }
+            }
+            if window.label() == "dialogue" && matches!(event, tauri::WindowEvent::Focused(true)) {
+                let _ = window.app_handle().emit_to("main", "deskpet-task-read", json!({"source":"chat"}));
+            }
+        })
         .invoke_handler(tauri::generate_handler![
+            pet_region::set_pet_region,
+            pet_placement::park_pet_beside_window,
+            pet_left_button_down,
+            quit_app,
+            reveal_pet_notification,
             llm_config_status,
+            api_profiles::api_profiles_list,
+            api_profiles::api_profiles_save,
+            api_profiles::api_profiles_activate,
             chat_stream,
             cancel_chat_stream,
             capture_screen_region,
@@ -301,7 +377,6 @@ pub fn run() {
 
 async fn stream_openai_compatible_chat(
     window: &tauri::Window,
-    state: &ChatCancelState,
     request: &ChatStreamRequest,
     config: &LlmConfig,
 ) -> Result<(), String> {
@@ -319,11 +394,6 @@ async fn stream_openai_compatible_chat(
 
     if request.messages.is_empty() {
         return Err("Message history is empty.".to_string());
-    }
-
-    if take_cancel_request(state, &request.request_id)? {
-        emit_chat_complete(window, &request.request_id)?;
-        return Ok(());
     }
 
     let payload = json!({
@@ -360,11 +430,6 @@ async fn stream_openai_compatible_chat(
         return Err(format!("API returned {status}: {}", detail.trim()));
     }
 
-    if take_cancel_request(state, &request.request_id)? {
-        emit_chat_complete(window, &request.request_id)?;
-        return Ok(());
-    }
-
     if !content_type.contains("text/event-stream") {
         let value = response
             .json::<Value>()
@@ -373,54 +438,24 @@ async fn stream_openai_compatible_chat(
         let content = value
             .pointer("/choices/0/message/content")
             .and_then(Value::as_str)
-            .unwrap_or("")
+            .ok_or_else(|| "API response has no assistant content.".to_string())?
             .to_string();
 
         if !content.is_empty() {
             emit_chat_delta(window, &request.request_id, &content)?;
         }
-        emit_chat_complete(window, &request.request_id)?;
         return Ok(());
     }
 
     let mut stream = response.bytes_stream();
-    let mut buffer = String::new();
-
+    let mut decoder = sse::SseDecoder::default();
     while let Some(chunk) = stream.next().await {
-        if take_cancel_request(state, &request.request_id)? {
-            emit_chat_complete(window, &request.request_id)?;
-            return Ok(());
-        }
-
-        let chunk =
-            chunk.map_err(|error| format_reqwest_error("Failed while reading stream", &error))?;
-        buffer.push_str(&String::from_utf8_lossy(&chunk).replace("\r\n", "\n"));
-
-        while let Some(split_at) = buffer.find("\n\n") {
-            let block = buffer[..split_at].to_string();
-            buffer = buffer[split_at + 2..].to_string();
-
-            if handle_sse_block(window, &request.request_id, &block)? {
-                emit_chat_complete(window, &request.request_id)?;
-                return Ok(());
-            }
-        }
+        let chunk = chunk.map_err(|error| format_reqwest_error("Failed while reading stream", &error))?;
+        for delta in decoder.push(&chunk)? { emit_chat_delta(window, &request.request_id, &delta)?; }
+        if decoder.finished { return Ok(()); }
     }
-
-    if !buffer.trim().is_empty() {
-        let _ = handle_sse_block(window, &request.request_id, &buffer)?;
-    }
-
-    emit_chat_complete(window, &request.request_id)?;
+    for delta in decoder.end()? { emit_chat_delta(window, &request.request_id, &delta)?; }
     Ok(())
-}
-
-fn take_cancel_request(state: &ChatCancelState, request_id: &str) -> Result<bool, String> {
-    Ok(state
-        .canceled_requests
-        .lock()
-        .map_err(|_| "Could not lock chat cancellation state.".to_string())?
-        .remove(request_id))
 }
 
 fn build_api_messages(
@@ -477,33 +512,6 @@ fn build_api_messages(
     Ok(messages)
 }
 
-fn handle_sse_block(window: &tauri::Window, request_id: &str, block: &str) -> Result<bool, String> {
-    for line in block.lines() {
-        let line = line.trim();
-        let Some(data) = line.strip_prefix("data:") else {
-            continue;
-        };
-        let data = data.trim();
-
-        if data == "[DONE]" {
-            return Ok(true);
-        }
-
-        let value = serde_json::from_str::<Value>(data)
-            .map_err(|error| format!("Failed to parse stream chunk: {error}"))?;
-
-        if let Some(delta) = value
-            .pointer("/choices/0/delta/content")
-            .and_then(Value::as_str)
-            .filter(|value| !value.is_empty())
-        {
-            emit_chat_delta(window, request_id, delta)?;
-        }
-    }
-
-    Ok(false)
-}
-
 fn emit_chat_delta(window: &tauri::Window, request_id: &str, delta: &str) -> Result<(), String> {
     window
         .emit(
@@ -513,15 +521,18 @@ fn emit_chat_delta(window: &tauri::Window, request_id: &str, delta: &str) -> Res
                 delta: delta.to_string(),
             },
         )
-        .map_err(|error| format!("Failed to emit chat delta: {error}"))
+        .map_err(|error| format!("Failed to emit chat delta: {error}"))?;
+    if !delta.is_empty() { let _ = window.app_handle().emit_to("main", "deskpet-speech-state", json!({"requestId":request_id,"active":true})); }
+    Ok(())
 }
 
-fn emit_chat_complete(window: &tauri::Window, request_id: &str) -> Result<(), String> {
+fn emit_chat_complete(window: &tauri::Window, request_id: &str, status: &str) -> Result<(), String> {
     window
         .emit(
             "llm-chat-complete",
             ChatCompleteEvent {
                 request_id: request_id.to_string(),
+                status: status.to_string(),
             },
         )
         .map_err(|error| format!("Failed to emit chat completion: {error}"))
@@ -561,7 +572,8 @@ fn format_reqwest_error(context: &str, error: &reqwest::Error) -> String {
     parts.join(" | ")
 }
 
-fn load_llm_config(app: Option<&tauri::AppHandle>) -> LlmConfig {
+fn load_llm_config(app: Option<&tauri::AppHandle>) -> Result<LlmConfig,String> {
+    let api = api_profiles::resolve(app)?;
     let env_values = load_env_values(app);
     let read_value = |key: &str| {
         env::var(key)
@@ -579,16 +591,16 @@ fn load_llm_config(app: Option<&tauri::AppHandle>) -> LlmConfig {
             .unwrap_or_else(|| (PROMPT_FALLBACK.to_string(), "fallback".to_string())),
     };
 
-    LlmConfig {
-        api_key: read_value("OURDESKPET_API_KEY"),
-        base_url: read_value("OURDESKPET_BASE_URL").unwrap_or_else(|| DEFAULT_BASE_URL.to_string()),
-        model: read_value("OURDESKPET_MODEL"),
+    Ok(LlmConfig {
+        api_key: api.key,
+        base_url: api.url,
+        model: api.model,
         model_options: read_value("OURDESKPET_MODEL_OPTIONS")
             .map(|value| parse_model_options(&value))
             .unwrap_or_default(),
         system_prompt,
         prompt_source,
-    }
+    })
 }
 
 fn parse_model_options(value: &str) -> Vec<String> {
@@ -746,3 +758,4 @@ fn extract_error_message(body: &str) -> Option<String> {
             .map(ToString::to_string)
     })
 }
+

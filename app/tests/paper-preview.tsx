@@ -1,0 +1,9 @@
+import {useState} from 'react';
+import {createRoot} from 'react-dom/client';
+import MessageMarkdown from '../src/components/MessageMarkdown';
+import {PaperBackdrop} from '../src/components/PaperBackdrop';
+import '../src/App.css';
+import '../src/components/DialoguePaper.css';
+const sample = '这里是纸板上的 **中文消息**。正文保持深色，背景不会随输入切换。\n\n```python\ndef greet(name):\n    print(f"Hello, {name}")\n```\n\n$$\n\\int_0^1 x^2\\,dx=\\frac{1}{3}\n$$\n\n| 显示内容 | 检查 |\n| --- | --- |\n| 中文 / English | 清楚 |\n| 代码 / 公式 | 独立排版 |';
+function Preview(){const [busy,setBusy]=useState(false);return <main className="dialogue-page" data-dialogue-theme="paper"><header className="dialogue-header"><div><h1>Rina Dialogue</h1><p>本地外观预览 · 不发送 API 请求</p></div><button className="dialogue-clear-button" onClick={()=>setBusy(!busy)}>{busy?'待机预览':'内容预览'}</button></header><section className="dialogue-shell"><section className="dialogue-main"><div className="dialogue-paper-thread-area"><PaperBackdrop/><div className="dialogue-thread">{busy ? <><article className="dialogue-message" data-role="user"><span>You</span><MessageMarkdown content="检查中文、代码块和公式是否清楚。"/></article><article className="dialogue-message" data-role="assistant"><span>Rina</span><MessageMarkdown content={sample}/></article></>:<article className="dialogue-message" data-role="assistant"><span>Rina</span><MessageMarkdown content={'璃奈板：待机 (._.)\n\n我在这里。'}/></article>}</div></div><form className="dialogue-input-row" onSubmit={e=>e.preventDefault()}><div className="dialogue-tool-area"><button type="button" className="dialogue-tool-button" aria-label="截图工具"><span className="capture-tool-icon"/></button></div><div className="dialogue-composer"><textarea aria-label="预览输入" placeholder="Ask Rina…" rows={1}/></div><button type="submit">Send</button></form></section></section></main>};createRoot(document.getElementById('root')!).render(<Preview/>);
+

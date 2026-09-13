@@ -1,11 +1,16 @@
 import type { ChangeEvent, ClipboardEvent, FormEvent, KeyboardEvent } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { describeImagePayload, fileToImagePayload, isSupportedImageFile } from "../llm/imagePayload";
 import type { ImagePayload } from "../llm/types";
 import type { CaptureErrorEvent, CaptureImageEvent } from "../llm/types";
 import { useDialogueChat } from "../llm/useDialogueChat";
+
+import { PaperBackdrop } from './PaperBackdrop';
+import './DialoguePaper.css';
+
+const MessageMarkdown = lazy(() => import("./MessageMarkdown"));
 
 export function DialoguePage() {
   const chat = useDialogueChat();
@@ -144,12 +149,6 @@ export function DialoguePage() {
     setIsToolPanelOpen(false);
   }
 
-  function prepareQuickAction(prompt: string) {
-    chat.setInput(prompt);
-    setIsToolPanelOpen(false);
-    textareaRef.current?.focus();
-  }
-
   async function startSystemCapture(prompt = "请解释这张截图中的内容。") {
     setIsToolPanelOpen(false);
     setCaptureStatus("Waiting for system screenshot...");
@@ -207,8 +206,9 @@ export function DialoguePage() {
   }
 
   return (
-    <main className="dialogue-page" data-dialogue-theme="default">
+    <main className="dialogue-page" data-dialogue-theme="paper">
       <header className="dialogue-header">
+        
         <div>
           <h1>Rina Dialogue</h1>
           <p>{captureStatus ?? chat.status}</p>
@@ -224,7 +224,7 @@ export function DialoguePage() {
       </header>
 
       <section className="dialogue-shell" aria-label="Dialogue workspace">
-        <section className="dialogue-main">
+        <section className="dialogue-main"><div className="dialogue-paper-thread-area"><PaperBackdrop />
           <div className="dialogue-thread" ref={threadRef}>
             {chat.messages.map((message) => (
               <article
@@ -259,12 +259,12 @@ export function DialoguePage() {
                     ))}
                   </div>
                 ) : null}
-                <p>{message.content || (message.state === "streaming" ? "..." : "")}</p>
+                <Suspense fallback={<p>{message.content}</p>}><MessageMarkdown content={message.content || (message.state === "streaming" ? "..." : "")} /></Suspense>
               </article>
             ))}
           </div>
 
-          <form className="dialogue-input-row" onSubmit={handleSubmit}>
+          </div><form className="dialogue-input-row" onSubmit={handleSubmit}>
             <div className="dialogue-tool-area">
               <button
                 className="dialogue-tool-button"
@@ -279,15 +279,6 @@ export function DialoguePage() {
                 <div className="dialogue-tool-panel">
                   <button type="button" onClick={() => void startSystemCapture("请解释这张截图中的内容。")}>
                     Capture
-                  </button>
-                  <button type="button" onClick={() => prepareQuickAction("请解释这张图片中的内容。")}>
-                    Explain
-                  </button>
-                  <button type="button" onClick={() => prepareQuickAction("请根据这张图片回答我的问题。")}>
-                    Ask
-                  </button>
-                  <button type="button" onClick={() => prepareQuickAction("请总结这张图片中的重点。")}>
-                    Summarize
                   </button>
                   <button type="button" onClick={chooseImageFile}>
                     Attach Image
@@ -392,3 +383,5 @@ export function DialoguePage() {
     </main>
   );
 }
+
+

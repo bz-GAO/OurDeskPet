@@ -7,8 +7,9 @@ import type {
   PetTransitionReason,
 } from "./types";
 
-export function usePetController(profile: PetProfile = defaultPetProfile) {
-  const [state, setState] = useState<PetState>(profile.initialState);
+export function usePetController(profile: PetProfile = defaultPetProfile, speaking=false) {
+  const [manualState, setState] = useState<PetState>(profile.initialState);
+  const state:PetState=manualState==='sleep'?'sleep':speaking?'talk':manualState;
   const transitionHistory = useRef<PetTransition[]>([]);
 
   const transitionTo = useCallback(

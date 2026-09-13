@@ -36,3 +36,9 @@ experiments/tmp/
 
 # External cache reminder:
 # E:\OurDeskPetBuildCache lives outside this repository and should never be copied in.
+
+# Local review history and machine-specific launchers
+.local-archive/
+*.lnk
+references/
+

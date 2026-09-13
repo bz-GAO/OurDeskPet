@@ -1,0 +1,170 @@
+.dialogue-page[data-dialogue-theme="paper"] {
+  color: #303343;
+  background: #f5f2f5;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-shell {
+  position: relative;
+  isolation: isolate;
+  background: #fcfafc;
+  border-color: #ded9e2;
+  border-radius: 16px;
+  box-shadow: 0 12px 36px #51405d0d;
+}
+
+.dialogue-paper-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: .48;
+  pointer-events: none;
+  user-select: none;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-main {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-thread {
+  padding: 22px;
+  scroll-behavior: auto;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-message {
+  flex-shrink: 0;
+  color: #303343;
+  background: rgb(255 255 255 / 88%);
+  border-color: rgb(172 161 185 / 22%);
+  border-radius: 13px;
+  line-height: 1.6;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-message[data-role="user"] {
+  background: rgb(243 238 247 / 94%);
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-message[data-state="error"] {
+  background: rgb(255 241 243 / 96%);
+  border-color: #e2b5be;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row {
+  background: rgb(255 253 255 / 88%);
+  border-color: #e4dee8;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] textarea {
+  color: #303343;
+  background: #fff;
+  border-color: #d7cddd;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] textarea:focus-visible {
+  outline: 2px solid #a38baa;
+  outline-offset: 1px;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row > button:not(:disabled) {
+  background: #766381;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row > button:not(:disabled):hover {
+  background: #64526f;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row > button[data-mode="stop"]:not(:disabled) {
+  color: #7b1f28;
+  background: #fff1f2;
+}
+
+/* Tool menus stay opaque so the decoration cannot interfere with labels. */
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row .dialogue-tool-button {
+  min-width: 42px;
+  color: #655273;
+  background: #f4eff7;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-tool-panel button:not(:disabled) {
+  color: #303343;
+  background: transparent;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-tool-panel button:not(:disabled):hover {
+  background: #f3edf7;
+}
+
+.dialogue-page[data-dialogue-theme="paper"] button:focus-visible {
+  outline: 2px solid #937b9b;
+  outline-offset: 2px;
+}
+
+@media (max-width: 620px) {
+  .dialogue-page[data-dialogue-theme="paper"] { padding: 12px; }
+  .dialogue-page[data-dialogue-theme="paper"] .dialogue-thread { padding: 12px; }
+  .dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 6px;
+    padding: 10px;
+  }
+  .dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row > button { min-width: 56px; }
+}
+
+.dialogue-paper-thread-area {
+  position: relative;
+  isolation: isolate;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.dialogue-paper-thread-area .dialogue-thread {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Paper White: the approved member mark supplies the cool gray-blue accent. */
+.dialogue-page[data-dialogue-theme="paper"] {
+  --rina-accent: #a0a8bd;
+  --rina-ink: #354156;
+  font-family: "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+  color: var(--rina-ink);
+  background: #eef0f5;
+}
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-shell {
+  background: #fdfdfd;
+  border-color: #d5dae4;
+  box-shadow: 0 10px 30px #37435a0a;
+}
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-paper-backdrop {
+  inset: auto 4% 2% auto;
+  width: min(58%, 440px);
+  height: 92%;
+  opacity: .18;
+}
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-message {
+  background: rgb(255 255 255 / 94%);
+  color: #303b4d;
+  border-color: #e3e7ee;
+  font-size: 15px;
+}
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-message[data-role="user"] { background: rgb(234 238 245 / 95%); }
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-message[data-state="error"] { background: #fff2f3; border-color: #e1b6bf; }
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row { background: #fafbfd; border-color: #dfe4ec; }
+.dialogue-page[data-dialogue-theme="paper"] textarea { color: #303b4d; border-color: #cdd4e0; }
+.dialogue-page[data-dialogue-theme="paper"] textarea:focus-visible,
+.dialogue-page[data-dialogue-theme="paper"] button:focus-visible { outline-color: #8492aa; }
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row > button:not(:disabled) { color: #253147; background: #b7c0d1; border-color: #a0a8bd; }
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row > button:not(:disabled):hover { background: #a7b3c8; }
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row > button[data-mode="stop"]:not(:disabled) { color: #7b1f28; background: #fff1f2; }
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-input-row .dialogue-tool-button { color: #4b5973; background: #e9edf4; border-color: #cbd3e0; }
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-tool-panel button:not(:disabled):hover { background: #e9edf4; }
+.dialogue-page[data-dialogue-theme="paper"] .dialogue-clear-button { color: #4b5973; background: #f9fafc; border-color: #cbd3e0; }
+
+.art-pack-select{display:flex;flex-direction:column;gap:4px;font-size:11px;color:#785c70;order:1;margin-left:auto}.art-pack-select select{max-width:210px;border:1px solid #e4cbdc;border-radius:8px;padding:6px 8px;background:#fff9fc;color:#67465f;font:inherit;font-size:12px}.dialogue-header>button{order:2}

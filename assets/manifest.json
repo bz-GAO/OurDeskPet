@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "updated": "2026-09-13",
+  "note": "Final deployed assets only. Reference URLs describe provenance, not a reuse license. Source icon URL currently returns 404. Process files stay local.",
+  "sources": {
+    "uniform": [
+      "https://spice.eplus.jp/articles/275577/images/881120",
+      "https://natalie.mu/comic/gallery/news/467415/1675442"
+    ],
+    "astromeda": [
+      "https://shop.mining-base.co.jp/products/acrylic-stand-lovelive-nijigasaki-tennojirina"
+    ],
+    "boards": [
+      "https://www.animatetimes.com/news/details.php?id=1604897077",
+      "https://yuriempire.wordpress.com/2020/11/07/love-live-nijigasaki-episode-6-the-mask/"
+    ],
+    "icon": [
+      "https://lovelive-sif2.bushimo.jp/member/nijigasaki/rina/"
+    ]
+  },
+  "assets": [
+    {
+      "path": "app/public/assets/rina/boards/electronic-blank-v3.png",
+      "sha256": "9d4aebd1ad84f55ca33e1d447b9755446753afb4565b5a977f0264b96644e6a5",
+      "bytes": 1333418,
+      "sourceGroup": "boards",
+      "method": "Reference-based redraw, crop/mask and application export"
+    },
+    {
+      "path": "app/public/assets/rina/boards/electronic-faithful.svg",
+      "sha256": "ccffb9ed53fdcd8c0af2c4171ee2c5e88b3192c4c747f38f9a33648b3f098a8d",
+      "bytes": 1636933,
+      "sourceGroup": "boards",
+      "method": "Reference-based redraw, crop/mask and application export"
+    },
+    {
+      "path": "app/public/assets/rina/boards/electronic-v3.png",
+      "sha256": "db421682e6f2b4568620f0f13aded5b0ff0ea9e95e57f45906f335c6dd91171a",
+      "bytes": 1210685,
+      "sourceGroup": "boards",
+      "method": "Reference-based redraw, crop/mask and application export"
+    },
+    {
+      "path": "app/public/assets/rina/boards/paper-v3.png",
+      "sha256": "016865f3722d26ebfcf190e8a2af5582c7e90c2201abee3e559b9e1964974569",
+      "bytes": 1164274,
+      "sourceGroup": "boards",
+      "method": "Reference-based redraw, crop/mask and application export"
+    },
+    {
+      "path": "app/public/assets/rina/icon.svg",
+      "sha256": "84476dab5cca083b486d12a9b952d1bb4af947b165064e18d2046df714e284ff",
+      "bytes": 574,
+      "sourceGroup": "icon",
+      "method": "Reference-based redraw, crop/mask and application export"
+    },
+    {
+      "path": "app/public/assets/rina/rina-idle-v1.png",
+      "sha256": "f843bf47204972b744561582faabbab0edaeaeaf288026c72c73bfe8ecb9a008",
+      "bytes": 887532,
+      "sourceGroup": "astromeda",
+      "method": "Reference-based AI redraw and local alpha cleanup"
+    },
+    {
+      "path": "app/public/assets/rina/summer-v1/drag.png",
+      "sha256": "7dadc2edc15d686d2b53c6a279caaa5d8154a13ee0379972405c4b8c500b6042",
+      "bytes": 243936,
+      "sourceGroup": "uniform",
+      "method": "Reference-based AI redraw and local alpha cleanup"
+    },
+    {
+      "path": "app/public/assets/rina/summer-v1/idle.png",
+      "sha256": "091c2aa5b5eaeb6466f349587fc6dfebe30d0b6f7d03f61e7829e4d9beca84a2",
+      "bytes": 183445,
+      "sourceGroup": "uniform",
+      "method": "Reference-based AI redraw and local alpha cleanup"
+    },
+    {
+      "path": "app/public/assets/rina/summer-v1/sleep.png",
+      "sha256": "dfd4efe57ec24bb3488d437f003e94d7ecb7852cfd15d8c4ed229c5d91f3c24f",
+      "bytes": 156804,
+      "sourceGroup": "uniform",
+      "method": "Reference-based AI redraw and local alpha cleanup"
+    },
+    {
+      "path": "app/public/assets/rina/summer-v1/talk.png",
+      "sha256": "f99522f287bc770c76a0dbfa50d82c748de850d6882ab2c7e7293c8b55c3c841",
+      "bytes": 173279,
+      "sourceGroup": "uniform",
+      "method": "Reference-based AI redraw and local alpha cleanup"
+    },
+    {
+      "path": "app/public/assets/rina/winter-v1/drag.png",
+      "sha256": "440a0acb152d0e1cd014c054e8a68a5e3f4398b124537b9723f507dfde04737d",
+      "bytes": 235983,
+      "sourceGroup": "uniform",
+      "method": "Reference-based AI redraw and local alpha cleanup"
+    },
+    {
+      "path": "app/public/assets/rina/winter-v1/idle.png",
+      "sha256": "f1236f63a5ecd239dcad0756f699bbc0713b907b177cc6a0c438d9494e9f55d9",
+      "bytes": 176845,
+      "sourceGroup": "uniform",
+      "method": "Reference-based AI redraw and local alpha cleanup"
+    },
+    {
+      "path": "app/public/assets/rina/winter-v1/sleep.png",
+      "sha256": "6e78ff5e666894eb69bb53769732216a98d45301b605d1bcacbaee6d443123a8",
+      "bytes": 149615,
+      "sourceGroup": "uniform",
+      "method": "Reference-based AI redraw and local alpha cleanup"
+    },
+    {
+      "path": "app/public/assets/rina/winter-v1/talk.png",
+      "sha256": "5e164d728f1afc7c3c8b433cf02478753308273b69e8c860b66b774b22505dac",
+      "bytes": 164070,
+      "sourceGroup": "uniform",
+      "method": "Reference-based AI redraw and local alpha cleanup"
+    },
+    {
+      "path": "app/src-tauri/icons/128x128.png",
+      "sha256": "37ccb50b8b1a3dd72714448672133d8f2a7408aabe99c9337b56e0280a0bd3c0",
+      "bytes": 2253,
+      "sourceGroup": "icon",
+      "method": "Reference-based redraw, crop/mask and application export"
+    },
+    {
+      "path": "app/src-tauri/icons/128x128@2x.png",
+      "sha256": "1805cbbeaa85360310e0ef5b0d9ef3f29b39f09ec2f130045ee53867693daa57",
+      "bytes": 4332,
+      "sourceGroup": "icon",
+      "method": "Reference-based redraw, crop/mask and application export"
+    },
+    {
+      "path": "app/src-tauri/icons/32x32.png",
+      "sha256": "683bd9e136e53364ebe4f3828f10d6f0ee64276d5f4bda3176647e058147d3c2",
+      "bytes": 671,
+      "sourceGroup": "icon",
+      "method": "Reference-based redraw, crop/mask and application export"
+    },
+    {
+      "path": "app/src-tauri/icons/icon.icns",
+      "sha256": "29cfa8990ea5a59eb7c4fa44550d6d0513dc01f1239ebb4f3c32950cde72b739",
+      "bytes": 54819,
+      "sourceGroup": "icon",
+      "method": "Reference-based redraw, crop/mask and application export"
+    },
+    {
+      "path": "app/src-tauri/icons/icon.ico",
+      "sha256": "c0f7973eac3abaeb569a9edb4b92581ac4a21c45835a1a2df5704b6606ee1ade",
+      "bytes": 10037,
+      "sourceGroup": "icon",
+      "method": "Reference-based redraw, crop/mask and application export"
+    },
+    {
+      "path": "app/src-tauri/icons/icon.png",
+      "sha256": "170f2bc0ff2a25068ad776bd848aa4496f3bd38d8fa1cbc79a943dbc13f669d6",
+      "bytes": 8858,
+      "sourceGroup": "icon",
+      "method": "Reference-based redraw, crop/mask and application export"
+    }
+  ]
+}

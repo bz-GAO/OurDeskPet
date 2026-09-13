@@ -1,0 +1,52 @@
+.pet-popup-shell { width:100vw; height:100vh; }
+.pet-select-button { position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:180px; height:162px; padding:0; border:0; background:transparent; display:grid; place-items:center; cursor:grab; touch-action:none; }
+.pet-select-button:active { cursor:grabbing; }
+.pet-select-button:focus-visible { outline:2px dashed #a0a8bd; outline-offset:-12px; border-radius:28px; }
+.pet-select-button .pet-image { width:158px; height:158px; }
+.pet-board-popup { position:absolute; top:6px; left:4px; right:4px; aspect-ratio:260/180; animation:board-appear 140ms ease-out; transform-origin:50% 100%; }
+.board-frame { display:block; width:100%; height:100%; filter:drop-shadow(0 2px 2px #33455b15); }
+.board-stars { position:absolute; right:2%; top:0; display:flex; gap:1px; align-items:center; }
+.board-star { width:36px; height:38px; padding:0; border:0; background:transparent; color:#3f5d72; cursor:pointer; }
+.board-star:nth-child(2) { transform:translateY(-5px); }
+.board-star svg { width:100%; height:100%; overflow:visible; }
+.star-shape { fill:#c5eaf0; stroke:#6d9eaf; stroke-width:1.3; }
+.board-star:hover .star-shape,.board-star:focus-visible .star-shape { fill:#fff; stroke:#526783; stroke-width:2; }
+.board-star:focus-visible { outline:2px solid #8290a8; outline-offset:1px; border-radius:8px; }
+.board-star:last-child:hover { color:#984352; }
+.board-status { position:absolute; left:14%; right:14%; top:39%; bottom:15%; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; color:#4b596e; text-align:center; }
+.board-face { color:#d89abd; font-size:22px; line-height:1; letter-spacing:4px; }
+.board-status p { margin:8px 0 0; font-family:'Segoe UI','Microsoft YaHei UI',sans-serif; font-size:12px; line-height:1.3; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+@keyframes board-appear { from { opacity:0; transform:translateY(5px) scale(.97); } to { opacity:1; transform:none; } }
+@media(prefers-reduced-motion:reduce) { .pet-board-popup { animation:none; } }
+
+/* Render the approved raster without changing its shape, expression or star sizes. */
+.pet-board-popup { top:auto; bottom:172px; left:calc(50% - 98px); right:auto; width:196px; aspect-ratio:1070/900; }
+.board-stars { inset:0; display:block; pointer-events:none; }
+.board-star { position:absolute; transform:translate(-50%,-50%); pointer-events:auto; width:26px; height:26px; border-radius:50%; color:#486878; }
+.board-star:nth-child(1) { left:64.5%; top:11.5%; }
+.board-star:nth-child(2) { left:81.3%; top:7.9%; width:26px; height:26px; transform:translate(-50%,-50%); }
+.board-star:nth-child(3) { left:92.8%; top:14.7%; }
+.board-star svg { opacity:0; transition:opacity 120ms; }
+.board-star:hover svg,.board-star:focus-visible svg { opacity:1; }
+
+/* Star artwork stays unchanged; preview the action on the large display instead. */
+.star-highlight,.board-screen-preview { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.star-highlight { filter:hue-rotate(130deg) saturate(.85); }
+.star-highlight[data-action="chat"] { clip-path:polygon(63.925% 7.222%,65.514% 9.556%,67.944% 9.444%,66.542% 11.889%,67.290% 15.000%,65.421% 14.333%,62.617% 15.778%,62.617% 12.889%,60.654% 11.333%,63.084% 10.000%); }
+.star-highlight[data-action="minimize"] { clip-path:polygon(81.121% 1.444%,82.897% 5.111%,86.262% 5.889%,84.019% 9.000%,84.393% 13.333%,81.121% 11.556%,77.664% 13.222%,78.131% 9.000%,76.075% 6.000%,79.252% 5.111%); }
+.star-highlight[data-action="close"] { clip-path:polygon(93.364% 9.444%,94.299% 12.778%,97.009% 14.111%,94.486% 16.111%,94.112% 19.889%,91.682% 17.778%,88.785% 18.556%,89.907% 15.000%,88.505% 12.111%,91.589% 12.111%); }
+.board-action-preview { position:absolute; left:35%; top:43%; width:30%; height:31%; color:#d690b6; fill:currentColor; pointer-events:none; }
+.board-action-preview svg { width:100%; height:100%; }
+
+/* Three gentle pulses; preserve the original artwork and transparent silhouette. */
+.board-notice-wash { position:absolute; inset:18% 9% 8%; background:#fff; clip-path:polygon(0 21%,22% 0,50% 14%,78% 0,100% 21%,100% 82%,86% 100%,14% 100%,0 82%); pointer-events:none; opacity:0; }
+.pet-board-popup[data-notifying="true"] .board-notice-wash { animation:board-notice-pulse 800ms ease-in-out 3; }
+@keyframes board-notice-pulse { 0%,100% {opacity:0;} 50% {opacity:.72;} }
+.pet-unread-dot { position:absolute; right:32px; top:24px; width:9px; height:9px; border:2px solid #fff; border-radius:50%; background:#db759f; pointer-events:none; }
+@media(prefers-reduced-motion:reduce) { .pet-board-popup[data-notifying="true"] .board-notice-wash { animation:none; opacity:.25; } }
+
+/* Only the smile area reacts; leave the original frame and stars untouched. */
+.pet-settings-face{position:absolute;left:30%;top:38%;width:43%;height:42%;border:0;background:transparent;border-radius:20%;cursor:pointer}
+.pet-settings-face:focus-visible{outline:1px dashed #ca7ca9;outline-offset:1px}
+.board-settings-highlight{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 120ms}
+.pet-board-popup:has(.pet-settings-face:hover) .board-settings-highlight,.pet-board-popup:has(.pet-settings-face:focus-visible) .board-settings-highlight{opacity:1}

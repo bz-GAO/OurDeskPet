@@ -1,67 +1,9 @@
-# RinaDesk Agent Documentation Index
+# 文档入口
 
-Last updated: 2026-05-28
+- [开发和启动](DEVELOPMENT.md)：构建、测试、API 配置与提交范围。
+- [状态与后续计划](ROADMAP.md)：唯一的当前功能／待办清单。
+- [素材说明](../assets/README.md)：正式资源路径、来源及哈希清单。
+- [璃奈提示词研究](research/RINA-PROMPT-RESEARCH.md)与[待审核草稿](research/RINA-PROMPT-DRAFT.md)：未启用。
+- [整理及验证记录](REPOSITORY-CLEANUP.md)。
 
-This folder is the central home for project management documentation.
-
-Product-facing name: `RinaDesk Agent`.
-Repository/local project name: `OurDeskPet`.
-
-Use this structure:
-
-- `docs\README.md`: documentation map and maintenance rules.
-- `docs\PROJECT_PLAN.md`: stable product direction, architecture boundaries, and development rules.
-- `docs\MILESTONES.md`: milestone status and exit criteria.
-- `docs\FEATURES.md`: feature inventory and scope status.
-- `docs\QA_CHECKLIST.md`: repeatable checks for manual and automated testing.
-- `docs\DEV_LOG.md`: chronological development log and important decisions.
-- `docs\GITHUB_PREP.md`: checklist for first GitHub publication.
-- `docs\modules\*.md`: focused module plans and optimization packages.
-
-Keep implementation-local notes outside this folder only when they are tied to a specific artifact:
-
-- `app\README.md`: app-specific development commands and structure.
-- `assets\rina\README.md`: asset replacement and naming notes.
-- `prompts\rina_system_prompt.md`: actual prompt content loaded by the app.
-
-Do not store generated dependency documentation, build output notes, or `node_modules` content as project documentation.
-
-## Reading Order
-
-For orientation:
-
-1. `PROJECT_PLAN.md`
-2. `MILESTONES.md`
-3. `FEATURES.md`
-4. `modules\OPTIMIZATION_PACKAGES.md`
-
-For active development:
-
-1. Read the relevant module plan in `docs\modules`.
-2. Check `QA_CHECKLIST.md` for verification expectations.
-3. After work, update `DEV_LOG.md`.
-4. If scope changed, update `MILESTONES.md` and `FEATURES.md`.
-
-For GitHub publishing:
-
-1. Read `GITHUB_PREP.md`.
-2. Re-check `.gitignore`.
-3. Confirm `.env` and build caches are not staged.
-
-## Current Phase
-
-M0-M4 are initially implemented.
-
-The project is now in an optimization phase:
-
-- `R1`: reliability and long-conversation management
-- `A1`: art and pet-state presentation
-- `L1`: LLM capability expansion
-- `M4P`: screenshot and image polish
-- `S1`: settings and management surface
-
-The canonical optimization plan is:
-
-```text
-docs\modules\OPTIMIZATION_PACKAGES.md
-```
+旧阶段计划、评审记录、截图和开发日志保留在本机 `.local-archive/2026-09-13/project/docs`。它们是历史快照，不再与当前文档混排，也不参与本次提交。

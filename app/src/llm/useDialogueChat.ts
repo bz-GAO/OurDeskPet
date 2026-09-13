@@ -1,4 +1,4 @@
-import { invoke } from "@tauri-apps/api/core";
+import { invoke, isTauri } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type {
@@ -70,8 +70,15 @@ export function useDialogueChat() {
   }, []);
 
   useEffect(() => {
-    void refreshConfig();
-  }, [refreshConfig]);
+    if (isSending) return;
+    let disposed=false; let off:(()=>void)|undefined;
+    const refresh=()=>void refreshConfig();
+    window.addEventListener('focus',refresh);
+    if(isTauri())void listen('deskpet-api-config-changed',refresh).then(fn=>{if(disposed)fn();else off=fn;}).catch(console.error);
+    return()=>{disposed=true;off?.();window.removeEventListener('focus',refresh);};
+  }, [refreshConfig,isSending]);
+
+  useEffect(()=>{void refreshConfig();},[refreshConfig]);
 
   const clearConversation = useCallback(() => {
     setMessages([INITIAL_ASSISTANT_MESSAGE]);
@@ -109,7 +116,7 @@ export function useDialogueChat() {
       }
 
       if (!isConfigured) {
-        setStatus("API config is incomplete. Check E:\\OurDeskPet\\.env.");
+        setStatus("API 配置不完整，请点击璃奈板笑脸，在设置中配置。");
         return;
       }
 
@@ -168,13 +175,13 @@ export function useDialogueChat() {
             message.id === assistantId
               ? {
                   ...message,
-                  content: message.content || "Stopped.",
+                  content: message.content || (event.payload.status === "cancelled" ? "Stopped." : "（回复为空）"),
                   state: "complete",
                 }
               : message,
           ),
         );
-        setStatus("Ready.");
+        setStatus(event.payload.status === "cancelled" ? "Stopped." : "Ready.");
       });
 
       const unlistenError = await listen<ChatErrorEvent>("llm-chat-error", (event) => {
@@ -278,3 +285,4 @@ export function useDialogueChat() {
     ],
   );
 }
+

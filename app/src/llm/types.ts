@@ -51,6 +51,7 @@ export interface ChatDeltaEvent {
 }
 
 export interface ChatCompleteEvent {
+  status: "completed" | "cancelled";
   requestId: string;
 }
 
