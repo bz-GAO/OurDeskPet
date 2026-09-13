@@ -26,7 +26,7 @@ use xcap::{
 };
 
 const DEFAULT_BASE_URL: &str = "https://api.openai.com/v1";
-const PROMPT_FALLBACK: &str = "你现在是天王寺璃奈（Tennoji Rina）。你是一个精通电子工程、硬件开发和计算机技术的女孩子。请在回复中使用璃奈板表达情绪，并用严谨但自然的语气帮助用户。";
+const PROMPT_FALLBACK: &str = include_str!("../../../prompts/rina_system_prompt.md");
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]

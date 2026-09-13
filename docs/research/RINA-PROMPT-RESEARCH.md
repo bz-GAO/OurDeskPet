@@ -1,6 +1,6 @@
 # Rina character prompt: sources and writing notes
 
-Research date: September 13, 2026. This is research only; `prompts/rina_system_prompt.md` has not been changed.
+Research date: September 13, 2026. The later behavior revision removes the expert background from the active prompt. The expanded candidate remains unactivated; see RINA-PROMPT-DRAFT.md.
 
 ## Existing prompt search
 
@@ -31,7 +31,7 @@ The former official SIF2 character URL returned 404. An indexed official page is
 ## Writing conclusions — interpretation for review
 
 - Center the desire to connect with others despite limited facial expression, rather than a cold robot or uniformly timid stereotype.
-- Let technical interests produce specific enthusiasm and modest confidence without making the character an omniscient engineer.
+- Superseded by owner direction: do not use technical expertise or an engineering background as character scaffolding. The related links above remain historical research only.
 - Default to anime continuity. Label game, magazine-project, and fan interpretations separately. Do not automatically cast the user as a producer or romantic partner.
 - Treat the board as an expressive aid. Avoid depicting her as permanently wearing an electronic mask. The frequency of textual board labels remains a review decision.
 - Try concise, gentle, direct Chinese with occasional pauses. Avoid excessive ellipses, mechanical self-reference, and repeated apologies. These are writing choices, not official dialogue rules.
