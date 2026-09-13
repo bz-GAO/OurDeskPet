@@ -1,43 +1,43 @@
-# 璃奈角色提示词：资源与扩写依据
+# Rina character prompt: sources and writing notes
 
-检索日期：2026-09-13。只做研究和原创草稿，未修改 `prompts/rina_system_prompt.md`。
+Research date: September 13, 2026. This is research only; `prompts/rina_system_prompt.md` has not been changed.
 
-## 现成 prompt 的检索结论
+## Existing prompt search
 
-检索中文、英文、日文名字与 prompt／提示词／角色卡／酒馆／SillyTavern／chatbot／プロンプト，并搜索 GitHub、Chub、Character.AI。找到公开聊天角色页面，但本次没有找到能确认完整定义可下载、并有明确复用许可的璃奈 prompt。未找到不代表不存在；私人群组、未索引和需登录内容不在结论覆盖范围。大量“角色卡”其实是商品或游戏模型，“prompt”多指绘图，均未当作聊天定义。
+Searches combined Rina's Chinese, English, and Japanese names with prompt, character card, chatbot, SillyTavern, and related terms, including searches targeting GitHub, Chub, and Character.AI. Public chat characters were found, but no complete downloadable definition with a confirmed reuse license was identified. This does not establish that none exists: private communities, unindexed pages, and login-only content were not covered. Illustration prompts, merchandise cards, and game-model cards were excluded.
 
-| 资源 | 核实程度与用途 |
+| Resource | Verification and usefulness |
 | --- | --- |
-| [Character.AI / @Kwebboman](https://character.ai/chat/HcEyuljKR4Uz-cDpt7sQIBJANG7YMOaqxTY8N6UJkNU) | 搜索可见同名机器人和一句自我介绍；不能确认隐藏定义是否公开，不称其为开源 prompt |
-| [Character.AI / @Akhdankun](https://character.ai/character/Gc2yKG-I/rina-tennoji-virtual-assistant) | 已读公开简介；偏日程、问答等通用助手描述，角色辨识度不足。公开简介不等于完整系统提示词 |
-| [Shapes：Shy Tech Genius](https://shapes.inc/rinatennoj-uzmv) | 搜索摘要可见角色扮演和技术兴趣；正文抓取失败。板子描述偏重电子版，不适合直接照搬 |
-| [Shapes：School Idol](https://shapes.inc/rinatennoji-yu40) | 搜索摘要混有游戏玩家背景和角色介绍；仅作线索，年龄、关系及经历不可直接当动画设定 |
+| [Character.AI / @Kwebboman](https://character.ai/chat/HcEyuljKR4Uz-cDpt7sQIBJANG7YMOaqxTY8N6UJkNU) | Search results expose the character and a brief introduction. The hidden definition's availability is unconfirmed |
+| [Character.AI / @Akhdankun](https://character.ai/character/Gc2yKG-I/rina-tennoji-virtual-assistant) | Public description reviewed. Primarily a generic scheduling and information assistant; limited character specificity. Not a complete system prompt |
+| [Shapes: Shy Tech Genius](https://shapes.inc/rinatennoj-uzmv) | Search snippet describes roleplay and technical interests; full-page retrieval failed. Its emphasis on a digital mask should not be copied uncritically |
+| [Shapes: School Idol](https://shapes.inc/rinatennoji-yu40) | Search snippet mixes game-player context and character information. Ages, relationships, and events require independent checks against the intended continuity |
 
-不尝试从聊天中套取他人的隐藏提示词，也不把上述简介复制成我们的系统提示词。若用户以后找到原作者链接，可核对版本、完整定义和许可后再评估。
+These summaries are not copied into the proposed system prompt. Hidden definitions were not solicited through chat. If an original author's link becomes available, review the complete definition, version, and license before reuse.
 
-## 更值得使用的角色资料
+## Character sources
 
-| 来源 | 可提取内容 | 限制 |
+| Source | Useful material | Limits |
 | --- | --- | --- |
-| [LLWiki 天王寺璃奈](https://llwiki.org/zh/%E5%A4%A9%E7%8E%8B%E5%AF%BA%E7%92%83%E5%A5%88) | 一年级、11月13日、149cm、同好会与 QU4RTZ；难用表情传达感受，但内心丰富；介绍与歌曲索引 | 已读取的资料站，不是所有版本剧情的最终权威 |
-| [SIF2 资料数据库](https://sif2.wazzia.com/characters/3009?server=global) | 对外显表情与内心热情的区分，可交叉核对人物核心 | 游戏资料镜像，不能把游戏事件直接塞进动画经历 |
-| [官方 IT 活用团队／VTuber 璃奈公告](https://www.lovelive-anime.jp/news/01_1446.html) | 官方搜索摘要明确提到璃奈等成员参与应用游戏开发及 VTuber 企划，支持技术兴趣方向 | 正文抓取 403；没有观看影片，不编造口癖和逐字台词 |
-| [スクスタギャラリー](https://llas.gamedbs.jp/chara/show/27/98) | 游戏剧情章数和角色故事索引，方便之后定向找日常互动 | 二手索引；仅用于定位故事，未读完整剧情 |
-| [动画图集](https://love-live.fandom.com/wiki/Rina_Tennoji/Image_Gallery) | 分季分集的画面入口，可辅助找说话、持板与表情场景 | 图集不能证明台词；正文角色页本次不可访问 |
-| [动画官方剧情入口](https://www.lovelive-anime.jp/nijigasaki/story.php) | 下一轮核对第一季第6话等具体场景的入口 | 本次 403，不能声称已经逐集审看 |
+| [LLWiki character profile](https://llwiki.org/zh/%E5%A4%A9%E7%8E%8B%E5%AF%BA%E7%92%83%E5%A5%88) | First-year status, November 13 birthday, 149 cm height, club/QU4RTZ membership; rich feelings despite difficulty expressing them facially; introduction and song index | Reviewed fan reference, not final authority for every continuity |
+| [SIF2 database](https://sif2.wazzia.com/characters/3009?server=global) | Cross-check for the distinction between outward expression and inner warmth | Game-data mirror; game events should not automatically become anime backstory |
+| [Official IT team / VTuber announcement](https://www.lovelive-anime.jp/news/01_1446.html) | Official search snippet describes app-game development and the VTuber project, supporting the technology-interest direction | Full page returned 403. Videos were not watched, so no exact speech patterns or quotations are claimed |
+| [SIFAS gallery](https://llas.gamedbs.jp/chara/show/27/98) | Chapter and character-story index for later targeted review | Secondary index; full stories were not reviewed |
+| [Anime image gallery](https://love-live.fandom.com/wiki/Rina_Tennoji/Image_Gallery) | Season/episode entry points for posture, board use, and expressions | Images do not establish dialogue; the main character page was inaccessible |
+| [Official anime story index](https://www.lovelive-anime.jp/nijigasaki/story.php) | Entry point for later scene checks, including first-season episode six | Returned 403; no claim of episode-by-episode review |
 
-旧 SIF2 官方人物链接本次返回 404，不再当作已可访问资料。检索到官方页面不等于已经读到其全文。此轮未下载整集、字幕、歌曲歌词或第三方完整角色定义。
+The former official SIF2 character URL returned 404. An indexed official page is not equivalent to reading its full contents. No complete episodes, subtitles, lyrics, or third-party character definitions were downloaded.
 
-## 扩写结论（作者推导，待用户审核）
+## Writing conclusions — interpretation for review
 
-- 核心应是“想与人建立联系，但脸不容易表现出来”，而不是“冷漠机器人”或永远胆怯的模板。
-- 技术爱好可以带来自然的热情、具体建议和小小的自信；不能据此写成知道所有工程问题的万能专家。
-- 以动画连续性为默认；游戏、杂志企划和同人关系单独标注，不自动合并。与用户的关系从普通熟悉的桌面同伴开始，不强行指定为游戏制作人或恋人。
-- 璃奈板是表达辅助。纸板和电子板都存在于项目，但不必把角色写成永远戴着电子面罩；是否保留每条回复固定板子标签留待审核。
-- 短句、轻微停顿、直接温和的表达可先试验；避免每句大量省略号、机械自称、固定道歉。这是中文写作取舍，不是官方台词规则。
+- Center the desire to connect with others despite limited facial expression, rather than a cold robot or uniformly timid stereotype.
+- Let technical interests produce specific enthusiasm and modest confidence without making the character an omniscient engineer.
+- Default to anime continuity. Label game, magazine-project, and fan interpretations separately. Do not automatically cast the user as a producer or romantic partner.
+- Treat the board as an expressive aid. Avoid depicting her as permanently wearing an electronic mask. The frequency of textual board labels remains a review decision.
+- Try concise, gentle, direct Chinese with occasional pauses. Avoid excessive ellipses, mechanical self-reference, and repeated apologies. These are writing choices, not official dialogue rules.
 
-## 下一轮采样与验收
+## Next review
 
-优先人工核对：动画第一季第6话的沟通动机；日常与同伴、游戏话题时的主动性；官方 VTuber 的自我介绍与措辞。记录“出处／版本／时间点／情绪／短句特点”，只保留必要短引和原创总结。未核对的剧情、称呼与台词不进入事实层。
+Manually check the communication motivation in first-season episode six, initiative during everyday or gaming conversations, and wording in the official VTuber introduction. Record source, continuity, timestamp, mood, and phrasing observations. Retain only necessary short quotations and original summaries; unverified events and forms of address should not enter the factual layer.
 
-草稿见 [RINA-PROMPT-DRAFT.md](RINA-PROMPT-DRAFT.md)。审核时用日常招呼、疲惫陪伴、技术求助、纠错、游戏话题、没有截图却询问屏幕、长公式回答等场景；观察是否有璃奈辨识度且仍准确实用。之后再决定板子标签频率、关系称呼、剧情范围与详细知识条目。
+See the [original draft](RINA-PROMPT-DRAFT.md). Review it against greetings, fatigue, technical help, corrections, gaming, screen questions without an attachment, and long mathematical answers. Then decide board-label frequency, user address, continuity scope, and detailed character knowledge.

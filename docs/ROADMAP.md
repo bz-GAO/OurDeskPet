@@ -1,20 +1,20 @@
-# 当前状态与后续方向
+# Status and roadmap
 
-更新：2026-09-13。以本页为当前状态；早期讨论稿已本地归档。
+Updated September 13, 2026. This page describes the current state; earlier discussion drafts are archived locally.
 
-## 已完成
+## Implemented
 
-透明桌宠与命中区域、拖动与右键休眠；夏冬服四种状态及 Astromeda 通用图；电子板三颗星、笑脸设置入口、超时收起、回复闪烁与未读点；聊天和设置面板；两张大预览的横向拖动；多 API 配置与 `.env` 同步；代码高亮、公式与图片附件；展开时条件防遮挡。
+Transparent desktop pet and input regions; dragging and right-click sleep; four artwork states for summer and winter outfits plus the Astromeda single-image pack; three-star board controls, smile settings entry, automatic collapse, completion flashes and unread indicators; chat and settings panels; horizontally draggable two-image previews; API profiles and `.env` synchronization; code highlighting, math, and image attachments; conditional window avoidance.
 
-等待首段正文复用待机，正文流式输出时说话，休眠优先且不被任务唤醒，拖动临时覆盖当前图。通知独立于人物状态。
+The pet remains idle while waiting for the first response text, talks during streaming, and respects manual sleep until explicitly awakened. Dragging temporarily overrides the displayed artwork. Notifications are independent of the character state.
 
-## 后续（尚未实施）
+## Planned, not implemented
 
-1. 角色提示词扩写：先审核 `research/RINA-PROMPT-RESEARCH.md` 的依据和 `research/RINA-PROMPT-DRAFT.md` 的原创草稿，再决定是否启用。角色／提示词绑定和 GUI 编辑未实现。
-2. 手绘美术细节统一、其他角色套装；独立全像素方案的步行动画。现有手绘包不做像素走路。
-3. 稳定安装目录、安装／发布流程、开机自启动；通用页目前只有禁用的预留项。
-4. 外部桌面翻译、日语音频识别／翻译任务接口；通知接口已有，实际工具未接入。
-5. 长对话摘要／上下文预算与持久化、模型多模态能力提示、更明确的网络错误处理。
-6. 电子板新交互；设置页第一颗星仍预留。角色切换时系统图标联动尚未实现。
+1. Character prompt expansion: review `research/RINA-PROMPT-RESEARCH.md` and `research/RINA-PROMPT-DRAFT.md` before activation. Character-to-prompt binding and a prompt editor are not implemented.
+2. More consistent hand-drawn artwork and additional characters; walking animation for a separate fully pixel-art pack. The current hand-drawn packs retain dragging poses.
+3. A stable installation directory, distribution workflow, and startup at Windows login. The general settings tab currently contains a disabled placeholder.
+4. Integration with desktop translation and Japanese audio transcription/translation tools. Notification infrastructure exists; external tools are not connected.
+5. Long-conversation summaries, context budgeting and persistence, model vision capability hints, and clearer network errors.
+6. Further electronic-board interactions. The first star in settings is reserved. Switching the system icon with the character is not implemented.
 
-API 功能目前限定兼容聊天协议，不承诺所有厂商原生协议通用。搜索／图像生成工具、语音等仍为方向，不是当前功能。
+API support currently targets the compatible chat protocol, not every provider's native API. Search, image generation, and voice remain future directions.
