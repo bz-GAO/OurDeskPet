@@ -1,0 +1,15 @@
+.chat-options{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:#7b6c7a;font-size:12px;margin:-6px 0 10px}
+.chat-options select{border:1px solid #e4cbd9;border-radius:8px;background:#fffafd;color:#65455a;padding:4px 8px}
+.chat-context-note{margin:0 0 8px;font-size:12px;color:#806875}
+.chat-reset-confirm{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px;background:#fff1f7;border:1px solid #edbfd5;border-radius:10px;margin-bottom:10px;font-size:13px}
+.chat-reset-confirm button,.chat-retry,.chat-reuse-image{border:1px solid #e2cbd8;background:#fffafd;color:#85526c;border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer}
+.chat-message-note{font-size:12px!important;color:#956079;margin:8px 0 0!important}
+.chat-sources{font-size:12px;color:#796b77;margin:8px 0;overflow-wrap:anywhere}
+.chat-sources a{color:#99597d}.chat-sources ul{padding-left:18px}
+.chat-retry{margin-top:8px}.chat-reuse-image{display:block;margin:5px 0}
+.dialogue-paper-thread-area{position:relative;min-height:0}
+.chat-jump-bottom{position:absolute;bottom:12px;right:18px;border:1px solid #dfb5cd;background:#fff8fc;box-shadow:0 2px 8px #83576c18;border-radius:18px;color:#86536f;padding:7px 12px;cursor:pointer;font-size:12px;z-index:2}
+
+.chat-toolbar{width:min(100%,1120px);min-width:0;margin:0 auto}
+.chat-toolbar .dialogue-header>div{min-width:0;overflow-wrap:anywhere}
+.chat-toolbar .dialogue-clear-button{flex-shrink:0}

@@ -1,5 +1,6 @@
 import type { ChangeEvent, ClipboardEvent, FormEvent, KeyboardEvent } from "react";
-import { invoke } from "@tauri-apps/api/core";
+import { openUrl } from "@tauri-apps/plugin-opener";
+import { invoke, isTauri } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { describeImagePayload, fileToImagePayload, isSupportedImageFile } from "../llm/imagePayload";
@@ -9,12 +10,18 @@ import { useDialogueChat } from "../llm/useDialogueChat";
 
 import { PaperBackdrop } from './PaperBackdrop';
 import './DialoguePaper.css';
+import './ChatExperience.css';
 
 const MessageMarkdown = lazy(() => import("./MessageMarkdown"));
 
 export function DialoguePage() {
   const chat = useDialogueChat();
   const threadRef = useRef<HTMLDivElement>(null);
+  const followBottom = useRef(true);
+  const [awayFromBottom,setAwayFromBottom]=useState(false);
+  const [confirmReset,setConfirmReset]=useState(false);
+  function scrollToBottom(){const node=threadRef.current;if(node){node.scrollTop=node.scrollHeight;followBottom.current=true;setAwayFromBottom(false);}}
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isToolPanelOpen, setIsToolPanelOpen] = useState(false);
@@ -48,7 +55,7 @@ export function DialoguePage() {
       return;
     }
 
-    thread.scrollTop = thread.scrollHeight;
+    if(followBottom.current)thread.scrollTop = thread.scrollHeight;
   }, [chat.messages]);
 
   useEffect(() => {
@@ -96,16 +103,18 @@ export function DialoguePage() {
       return;
     }
 
+    followBottom.current=true;
     void chat.sendMessage();
   }
 
   function handleInputKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
-    if (event.key === "Enter" && !event.shiftKey) {
+    if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {
       event.preventDefault();
       if (chat.isSending) {
         return;
       }
-      void chat.sendMessage();
+      followBottom.current=true;
+    void chat.sendMessage();
     }
   }
 
@@ -140,7 +149,7 @@ export function DialoguePage() {
       const payloads = await Promise.all(imageFiles.map(fileToImagePayload));
       chat.addPendingImages(payloads);
     } catch (error) {
-      console.warn("Failed to attach image.", error);
+      chat.setStatus(`添加图片失败：${String(error)}`);
     }
   }
 
@@ -207,6 +216,7 @@ export function DialoguePage() {
 
   return (
     <main className="dialogue-page" data-dialogue-theme="paper">
+      <div className="chat-toolbar">
       <header className="dialogue-header">
         
         <div>
@@ -216,16 +226,19 @@ export function DialoguePage() {
         <button
           className="dialogue-clear-button"
           type="button"
-          onClick={chat.clearConversation}
-          disabled={chat.isSending}
+          onClick={()=>setConfirmReset(true)}
         >
-          Clear
+          重置对话
         </button>
       </header>
 
+      {confirmReset&&<div className="chat-reset-confirm" role="alertdialog" aria-label="重置对话确认"><span>重置后将清空消息、草稿和附件{chat.isSending?'，并停止当前回复':''}。</span><button onClick={()=>{chat.clearConversation();setConfirmReset(false);followBottom.current=true;}}>确认重置</button><button onClick={()=>setConfirmReset(false)}>取消</button></div>}
+      <div className="chat-options"><label>联网 <select aria-label="联网模式" value={chat.searchMode} disabled={chat.isSending} onChange={e=>chat.setSearchMode(e.target.value as 'auto'|'off'|'required')}><option value="auto">自动</option><option value="off">关闭</option><option value="required">必须搜索</option></select></label></div>
+      {chat.contextNote&&<p className="chat-context-note">{chat.contextNote}</p>}
+      </div>
       <section className="dialogue-shell" aria-label="Dialogue workspace">
         <section className="dialogue-main"><div className="dialogue-paper-thread-area"><PaperBackdrop />
-          <div className="dialogue-thread" ref={threadRef}>
+          <div className="dialogue-thread" ref={threadRef} onScroll={e=>{const node=e.currentTarget;const near=node.scrollHeight-node.scrollTop-node.clientHeight<64;followBottom.current=near;setAwayFromBottom(!near);}}>
             {chat.messages.map((message) => (
               <article
                 className="dialogue-message"
@@ -259,11 +272,19 @@ export function DialoguePage() {
                     ))}
                   </div>
                 ) : null}
+                {message.images?.length ? <button className="chat-reuse-image" type="button" onClick={()=>chat.addPendingImages(message.images!)}>再次附加这些图片</button>:null}
                 <Suspense fallback={<p>{message.content}</p>}><MessageMarkdown content={message.content || (message.state === "streaming" ? "..." : "")} /></Suspense>
+                {message.error&&<p className="chat-message-note" role="status">{message.error}</p>}
+                {message.searchWarning&&<p className="chat-message-note">搜索未能完成查证：{message.searchWarning}</p>}
+                {message.state==='cancelled'&&<p className="chat-message-note">已停止 · 部分回复不作为完整回答发送到下一轮</p>}
+                {message.state==='truncated'&&<p className="chat-message-note">达到长度限制 · 回复未完整</p>}
+                {message.sources?.length ? <details className="chat-sources"><summary>搜索来源（{message.sources.length}）</summary><ul>{message.sources.map(source=><li key={source.url}><a href={source.url} onClick={event=>{if(isTauri()){event.preventDefault();void openUrl(source.url).catch(error=>chat.setStatus(`打开来源失败：${String(error)}`));}}} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul></details>:null}
+                {message.role==='assistant'&&message.id===chat.messages[chat.messages.length-1]?.id&&message.id!=='initial-assistant'&& !chat.isSending&&<button className="chat-retry" onClick={()=>{followBottom.current=true;void chat.retryLast();}}>{message.state==='complete'?'重新生成':'重试上一条'}</button>}
               </article>
             ))}
           </div>
 
+          {awayFromBottom&&<button className="chat-jump-bottom" onClick={scrollToBottom}>回到最新回复 ↓</button>}
           </div><form className="dialogue-input-row" onSubmit={handleSubmit}>
             <div className="dialogue-tool-area">
               <button

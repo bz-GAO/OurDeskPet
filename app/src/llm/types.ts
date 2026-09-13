@@ -1,6 +1,8 @@
 export type DialogueRole = "user" | "assistant";
 
-export type DialogueMessageState = "complete" | "streaming" | "error";
+export type DialogueMessageState = "complete" | "streaming" | "error" | "cancelled" | "truncated";
+export type SearchMode = "auto" | "off" | "required";
+export interface SearchSource { title:string; url:string; }
 
 export interface DialogueMessage {
   id: string;
@@ -8,6 +10,9 @@ export interface DialogueMessage {
   content: string;
   state: DialogueMessageState;
   images?: ImagePayload[];
+  error?: string;
+  sources?: SearchSource[];
+  searchWarning?: string;
 }
 
 export interface ChatMessagePayload {
@@ -35,6 +40,8 @@ export interface ChatStreamRequest {
   requestId: string;
   messages: ChatMessagePayload[];
   images?: ImagePayload[];
+  searchMode: SearchMode;
+  currentDate: string;
 }
 
 export interface LlmConfigStatus {
@@ -43,6 +50,8 @@ export interface LlmConfigStatus {
   model?: string;
   modelOptions: string[];
   promptSource: string;
+  searchAvailable: boolean;
+  contextChars: number;
 }
 
 export interface ChatDeltaEvent {
@@ -51,7 +60,7 @@ export interface ChatDeltaEvent {
 }
 
 export interface ChatCompleteEvent {
-  status: "completed" | "cancelled";
+  status: "completed" | "cancelled" | "truncated";
   requestId: string;
 }
 

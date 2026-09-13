@@ -2,6 +2,8 @@ mod pet_placement;
 mod api_profiles;
 mod pet_region;
 mod sse;
+mod chat_search;
+mod stream_chat;
 use arboard::{Clipboard, Error as ClipboardError};
 use base64::{engine::general_purpose::STANDARD as BASE64_STANDARD, Engine};
 use futures_util::{StreamExt, future::{AbortHandle, Abortable}};
@@ -36,6 +38,8 @@ struct LlmConfigStatus {
     model: Option<String>,
     model_options: Vec<String>,
     prompt_source: String,
+    search_available: bool,
+    context_chars: usize,
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -44,6 +48,9 @@ struct ChatStreamRequest {
     request_id: String,
     messages: Vec<ChatMessage>,
     images: Option<Vec<ImagePayload>>,
+    #[serde(default)]
+    search_mode: String,
+    current_date: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -101,6 +108,11 @@ struct LlmConfig {
     model_options: Vec<String>,
     system_prompt: String,
     prompt_source: String,
+    tavily_key: Option<String>,
+    tavily_url: String,
+    search_enabled: bool,
+    context_chars: usize,
+    read_timeout_secs: u64,
 }
 
 #[derive(Default)]
@@ -121,6 +133,8 @@ fn llm_config_status(app: tauri::AppHandle) -> Result<LlmConfigStatus,String> {
         model: config.model,
         model_options: config.model_options,
         prompt_source: config.prompt_source,
+        search_available: config.search_enabled && config.tavily_key.is_some(),
+        context_chars: config.context_chars,
     })
 }
 
@@ -129,7 +143,7 @@ async fn chat_stream(
     window: tauri::Window,
     state: State<'_, ChatCancelState>,
     request: ChatStreamRequest,
-) -> Result<(), String> {
+) -> Result<String, String> {
     let config = load_llm_config(Some(window.app_handle()))?;
 
     let (abort, registration) = AbortHandle::new_pair();
@@ -138,19 +152,20 @@ async fn chat_stream(
         if active.contains_key(&request.request_id) { return Err("Duplicate request ID.".into()); }
         active.insert(request.request_id.clone(), abort);
     }
-    let result = Abortable::new(stream_openai_compatible_chat(&window, &request, &config), registration).await;
+    let result = Abortable::new(stream_chat::run(&window, &request, &config), registration).await;
     let _ = window.app_handle().emit_to("main", "deskpet-speech-state", json!({"requestId":request.request_id,"active":false}));
     state.active_requests.lock().map_err(|_| "Could not lock active requests.")?.remove(&request.request_id);
     match result {
-        Err(_) => emit_chat_complete(&window, &request.request_id, "cancelled"),
+        Err(_) => { emit_chat_complete(&window, &request.request_id, "cancelled")?; Ok("cancelled".into()) },
         Ok(Err(error)) => { let _ = emit_chat_error(&window, &request.request_id, &error); Err(error) }
-        Ok(Ok(())) => {
-            emit_chat_complete(&window, &request.request_id, "completed")?;
+        Ok(Ok(status)) => {
+            emit_chat_complete(&window, &request.request_id, status)?;
+            if status != "completed" { return Ok(status.into()); }
             // The native producer is independent of the dialogue webview lifecycle.
             let _ = window.app_handle().emit_to("main", "deskpet-task-event", json!({
                 "source": "chat", "taskId": request.request_id, "status": "completed"
             }));
-            Ok(())
+            Ok(status.into())
         }
     }
 }
@@ -345,6 +360,12 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .manage(ChatCancelState::default())
         .on_window_event(|window, event| {
+            if window.label()=="dialogue" {
+                if let tauri::WindowEvent::CloseRequested { api, .. }=event {
+                    api.prevent_close();
+                    let _=window.hide();
+                }
+            }
             if window.label()=="dialogue" && matches!(event,tauri::WindowEvent::Destroyed) {
                 if let Ok(active)=window.app_handle().state::<ChatCancelState>().active_requests.lock() {
                     for abort in active.values(){abort.abort();}
@@ -373,89 +394,6 @@ pub fn run() {
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
-}
-
-async fn stream_openai_compatible_chat(
-    window: &tauri::Window,
-    request: &ChatStreamRequest,
-    config: &LlmConfig,
-) -> Result<(), String> {
-    let api_key = config
-        .api_key
-        .as_ref()
-        .filter(|value| !value.trim().is_empty())
-        .ok_or_else(|| "API key is not configured. Add OURDESKPET_API_KEY to .env.".to_string())?;
-
-    let model = config
-        .model
-        .as_ref()
-        .filter(|value| !value.trim().is_empty())
-        .ok_or_else(|| "Model is not configured. Add OURDESKPET_MODEL to .env.".to_string())?;
-
-    if request.messages.is_empty() {
-        return Err("Message history is empty.".to_string());
-    }
-
-    let payload = json!({
-        "model": model,
-        "stream": true,
-        "messages": build_api_messages(request, &config.system_prompt)?,
-    });
-
-    let client = reqwest::Client::builder()
-        .connect_timeout(Duration::from_secs(20))
-        .build()
-        .map_err(|error| format!("Failed to create HTTP client: {error}"))?;
-
-    let response = client
-        .post(chat_completions_endpoint(&config.base_url))
-        .header(AUTHORIZATION, format!("Bearer {api_key}"))
-        .header(CONTENT_TYPE, "application/json")
-        .json(&payload)
-        .send()
-        .await
-        .map_err(|error| format_reqwest_error("API request failed", &error))?;
-
-    let status = response.status();
-    let content_type = response
-        .headers()
-        .get(CONTENT_TYPE)
-        .and_then(|value| value.to_str().ok())
-        .unwrap_or("")
-        .to_string();
-
-    if !status.is_success() {
-        let body = response.text().await.unwrap_or_default();
-        let detail = extract_error_message(&body).unwrap_or(body);
-        return Err(format!("API returned {status}: {}", detail.trim()));
-    }
-
-    if !content_type.contains("text/event-stream") {
-        let value = response
-            .json::<Value>()
-            .await
-            .map_err(|error| format_reqwest_error("Failed to parse API response", &error))?;
-        let content = value
-            .pointer("/choices/0/message/content")
-            .and_then(Value::as_str)
-            .ok_or_else(|| "API response has no assistant content.".to_string())?
-            .to_string();
-
-        if !content.is_empty() {
-            emit_chat_delta(window, &request.request_id, &content)?;
-        }
-        return Ok(());
-    }
-
-    let mut stream = response.bytes_stream();
-    let mut decoder = sse::SseDecoder::default();
-    while let Some(chunk) = stream.next().await {
-        let chunk = chunk.map_err(|error| format_reqwest_error("Failed while reading stream", &error))?;
-        for delta in decoder.push(&chunk)? { emit_chat_delta(window, &request.request_id, &delta)?; }
-        if decoder.finished { return Ok(()); }
-    }
-    for delta in decoder.end()? { emit_chat_delta(window, &request.request_id, &delta)?; }
-    Ok(())
 }
 
 fn build_api_messages(
@@ -600,6 +538,11 @@ fn load_llm_config(app: Option<&tauri::AppHandle>) -> Result<LlmConfig,String> {
             .unwrap_or_default(),
         system_prompt,
         prompt_source,
+        tavily_key: read_value("TAVILY_API_KEY").filter(|s|!s.is_empty()),
+        tavily_url: read_value("OURDESKPET_TAVILY_BASE_URL").filter(|s|!s.is_empty()).unwrap_or_else(||"https://api.tavily.com".into()),
+        search_enabled: read_value("OURDESKPET_SEARCH_ENABLED").as_deref()!=Some("false"),
+        context_chars: read_value("OURDESKPET_CONTEXT_CHARS").and_then(|s|s.parse::<usize>().ok()).unwrap_or(24000).clamp(4000,100000),
+        read_timeout_secs: read_value("OURDESKPET_READ_TIMEOUT_SECS").and_then(|s|s.parse::<u64>().ok()).unwrap_or(180).clamp(15,600),
     })
 }
 
@@ -747,15 +690,5 @@ fn dedupe_paths(paths: Vec<PathBuf>) -> Vec<PathBuf> {
 fn same_path(left: &Path, right: &Path) -> bool {
     left.to_string_lossy()
         .eq_ignore_ascii_case(&right.to_string_lossy())
-}
-
-fn extract_error_message(body: &str) -> Option<String> {
-    serde_json::from_str::<Value>(body).ok().and_then(|value| {
-        value
-            .pointer("/error/message")
-            .and_then(Value::as_str)
-            .or_else(|| value.pointer("/message").and_then(Value::as_str))
-            .map(ToString::to_string)
-    })
 }
 
