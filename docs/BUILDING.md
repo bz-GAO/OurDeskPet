@@ -16,7 +16,7 @@
 4. 使用 scripts/prepare-runtime.py，将 Python 标准库、Tcl/Tk、所需依赖和 FFmpeg / yt-dlp 组装到本机忽略目录。该脚本需要明确给出 Python、依赖环境及媒体工具路径；不会复制任何用户配置。
 5. 使用 scripts/collect-licenses.py 收集锁定依赖的许可；保留媒体工具来源、LICENSE 和对应源码信息。
 6. 在 RinaDesk/app 运行 `npm test`、`npm run build`；运行两套 Python 离线回归。测试临时目录放在工作磁盘，勿使用真实 API Key。
-7. 从根目录运行 `scripts/Build-Release.ps1`。输出在 artifacts，文件名带 `_test` 并附 SHA-256；可用 CacheRoot 指定已存在的增量缓存。
+7. 从根目录运行 `scripts/Build-Release.ps1`。输出在 artifacts，文件名为 `OurDeskPet-0.1.0-x64-setup.exe` 并附 SHA-256；可用 CacheRoot 指定已存在的增量缓存。
 
 runtime、.venv、.tools、node_modules 和 artifacts 都不进入 Git。安装器通过资源清单打包它们。
 
@@ -24,6 +24,6 @@ runtime、.venv、.tools、node_modules 和 artifacts 都不进入 Git。安装�
 
 ## 版本与验收
 
-公开发布使用一个统一版本；组件来源提交另行记录。安装注册、程序名和数据命名空间以 OurDeskPet 为准。测试版没有默认复制开发凭据或登录数据的迁移步骤。
+公开发布使用一个统一版本；组件来源提交另行记录。安装注册、程序名和数据命名空间以 OurDeskPet 为准。发布版没有默认复制开发凭据或登录数据的迁移步骤。
 
-在隔离目录验证首次安装、旧版维护、用户数据保留、组件加载和卸载后，再创建 GitHub 测试 Release。真实音频设备、QQ 登录和付费模型调用仍需使用者自己的环境验收。
+在隔离目录验证首次安装、旧版维护、用户数据保留、组件加载和卸载后，再创建 GitHub Release。真实音频设备、QQ 登录和付费模型调用仍需使用者自己的环境验收。

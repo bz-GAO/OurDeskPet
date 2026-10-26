@@ -68,12 +68,9 @@ fn log_event(line: &str) {
     let _guard = LOG_LOCK
         .lock()
         .unwrap_or_else(|poisoned| poisoned.into_inner());
-    let Some(local) = std::env::var_os("LOCALAPPDATA") else {
+    let Ok(dir) = crate::release_profile::data_dir("RinaDesk").map(|home| home.join("logs")) else {
         return;
     };
-    let dir = std::path::PathBuf::from(local)
-        .join("RinaDesk")
-        .join("logs");
     if std::fs::create_dir_all(&dir).is_err() {
         return;
     }

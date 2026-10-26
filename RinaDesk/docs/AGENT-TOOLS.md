@@ -70,7 +70,7 @@ STATUS_ENTRYPOINT_NOT_FOUND 启动失败（两次二分定位；原因未深究�
 - 边界：导出（选字幕样式）仍属 Yaki 扩展页，卡片在 awaiting_style
   终态提示用户前往；agent 不代做样式选择。
 
-## 后续增量（未实现，动手前先在 STATUS.md 立项）
+## 后续增量（未实现）
 
 1. **提案级设置动作**：Tomo 功能开关、Desk Chat 参数等免费可逆变更，复用
    `ProjectSettingsProposal` 的 pending/用户裁决/decide 交互。

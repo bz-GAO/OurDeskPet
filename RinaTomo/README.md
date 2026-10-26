@@ -1,9 +1,9 @@
 # RinaTomo
 
-可独立运行、也可由 RinaDesk 管理的 QQ Bot。通过 NapCat Shell 与 QQ NT 接收消息，提供权限控制和可选模型回复。
+OurDeskPet 的 QQ 消息组件，通过 NapCat Shell 与 QQ 接收消息，提供权限控制、模型回复和任务通知。可从 Desk 的 QQ Bot 页面启动，也可使用本目录启动器打开独立面板。
 
-- [用户指南](docs/user/README.md)：开始使用、登录、回复权限与关闭行为。
-- [开发与维护](docs/development/README.md)：源码安装、命令行、配置字段和验证。
-- [控制协议](docs/CONTROL-PROTOCOL.md)：原生面板与 Desk 的共享接口。
+- [统一用户手册](../docs/用户手册.md)：QQ、NapCat、登录、权限与 API 配置。
+- [独立面板指南](docs/user/README.md)。
+- [开发文档](docs/development/README.md)与[控制协议](docs/CONTROL-PROTOCOL.md)。
 
-真实账号、密钥与登录缓存不属于源码。首次使用需准备运行环境，不代表本项目已经提供完整安装包。
+完整安装包已包含 Tomo 和 Python 运行时。QQ、NapCat、API 及账号由使用者准备，发布版不携带作者的账号、密钥或登录缓存。配置保存在安装根目录的 `data/RinaTomo`。

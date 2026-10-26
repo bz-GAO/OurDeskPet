@@ -74,7 +74,7 @@ Desk 的语音能力分为互不共享运行状态的 input（麦克风→文字
 - 前端：`app/src/voice/`——`voicePhase.ts`（纯状态机，单测覆盖）、
   `useVoiceInput.ts`（事件订阅与命令）、`VoiceDialog.tsx`、`voice.css`。
 
-## 后续候选（动手前先在 STATUS.md 立项）
+## 后续候选（未实现）
 
 - 弹窗内文本可编辑（当前只读展示）。
 - 热词偏置：把项目名词（RinaYaki/Tomo 等）作为识别偏置词表传入。

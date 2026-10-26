@@ -36,10 +36,10 @@ try {
     & (Join-Path $releaseRoot 'RinaDesk/scripts/Apply-InstallerPreviewTemplate.ps1') -GeneratedRoot $generated -BundlePath $bundle
     $artifacts=Join-Path $releaseRoot 'artifacts'
     New-Item -ItemType Directory -Force -Path $artifacts | Out-Null
-    $setup=Join-Path $artifacts 'OurDeskPet-0.1.0-x64-setup_test.exe'
+    $setup=Join-Path $artifacts 'OurDeskPet-0.1.0-x64-setup.exe'
     Copy-Item -LiteralPath $bundle -Destination $setup -Force
     $hash=(Get-FileHash -LiteralPath $setup -Algorithm SHA256).Hash.ToLowerInvariant()
-    Set-Content -LiteralPath (Join-Path $artifacts 'OurDeskPet-0.1.0-x64-setup_test.sha256') -Value "$hash  OurDeskPet-0.1.0-x64-setup_test.exe" -Encoding ascii
+    Set-Content -LiteralPath (Join-Path $artifacts 'OurDeskPet-0.1.0-x64-setup.sha256') -Value "$hash  OurDeskPet-0.1.0-x64-setup.exe" -Encoding ascii
     Write-Output "Installer: $setup"
     Write-Output "SHA-256: $hash"
 } finally {

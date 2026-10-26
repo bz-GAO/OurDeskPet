@@ -7,11 +7,15 @@ def initialize():
     for name in list(os.environ):
         if name.startswith(('DASHSCOPE_', 'RINATOMO_', 'RINAYAKI_')):
             os.environ.pop(name, None)
-    base = Path(os.environ.get('LOCALAPPDATA') or Path.home() / 'AppData' / 'Local') / 'OurDeskPet'
+    root = Path(__file__).resolve().parents[3]
+    if not (root / 'release-manifest.json').is_file() or not (root / 'RinaDesk' / 'release-profile.json').is_file():
+        raise RuntimeError('OurDeskPet installation root is invalid; reinstall the complete package.')
+    base = root / 'data'
+    os.environ['OURDESKPET_DATA_ROOT'] = str(base)
     os.environ['RINATOMO_CONFIG_HOME'] = str(base / 'RinaTomo')
     os.environ['RINAYAKI_CONFIG_HOME'] = str(base / 'RinaYaki')
-    os.environ['RINAYAKI_ROOT'] = str(Path(__file__).resolve().parents[3] / 'RinaYaki')
-    runtime = Path(__file__).resolve().parents[3] / 'runtime' / 'python' / 'tcl'
+    os.environ['RINAYAKI_ROOT'] = str(root / 'RinaYaki')
+    runtime = root / 'runtime' / 'python' / 'tcl'
     if runtime.is_dir():
         os.environ['TCL_LIBRARY'] = str(runtime / 'tcl8.6')
         os.environ['TK_LIBRARY'] = str(runtime / 'tk8.6')

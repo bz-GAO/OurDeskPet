@@ -21,10 +21,14 @@ $finishReadme = '!define MUI_FINISHPAGE_SHOWREADME_TEXT "$(createDesktop)"'
 $finishRun = '!define MUI_FINISHPAGE_RUN_FUNCTION RunMainBinary'
 $brandingMarker = 'BrandingText "${COPYRIGHT}"'
 $licensePageMarker = '!insertmacro MUI_PAGE_LICENSE "${LICENSE}"'
+$directoryPageMarker = @'
+!define MUI_PAGE_CUSTOMFUNCTION_PRE SkipIfPassive
+!insertmacro MUI_PAGE_DIRECTORY
+'@
 $noAutoCloseMarker = '!define MUI_FINISHPAGE_NOAUTOCLOSE'
 $mainBinaryMarker = '  File "${MAINBINARYSRCPATH}"'
 $selectorPattern = '(?m)^  !if "\$\{DISPLAYLANGUAGESELECTOR\}" == "true"\r?\n    !insertmacro MUI_LANGDLL_DISPLAY\r?\n  !endif'
-foreach ($marker in @($varMarker, $pageMarker, $languageMarker, $maintenanceMarker, $renderMarker, $upgradeHeader, $finishReadme, $finishRun, $brandingMarker, $licensePageMarker, $noAutoCloseMarker, $mainBinaryMarker)) {
+foreach ($marker in @($varMarker, $pageMarker, $languageMarker, $maintenanceMarker, $renderMarker, $upgradeHeader, $finishReadme, $finishRun, $brandingMarker, $licensePageMarker, $directoryPageMarker, $noAutoCloseMarker, $mainBinaryMarker)) {
     if (-not $text.Contains($marker)) {
         throw "The generated NSIS template changed; expected marker was not found: $marker"
     }
@@ -83,6 +87,11 @@ $text = $text.Replace($licensePageMarker, @'
 !define MUI_LICENSEPAGE_TEXT_BOTTOM " "
 !insertmacro MUI_PAGE_LICENSE "${LICENSE}"
 '@)
+$text = $text.Replace($directoryPageMarker, @'
+!define MUI_PAGE_CUSTOMFUNCTION_PRE RinaDirectoryPre
+!define MUI_PAGE_CUSTOMFUNCTION_LEAVE RinaDirectoryLeave
+!insertmacro MUI_PAGE_DIRECTORY
+'@)
 $text = $text.Replace($noAutoCloseMarker, '; Continue directly to the finish page when installation succeeds.')
 $text = $text.Replace($mainBinaryMarker, @'
   SetDetailsPrint textonly
@@ -133,6 +142,23 @@ FunctionEnd
 Function RinaOpenProject
   Pop $0
   ExecShell "open" "https://github.com/bz-GAO/OurDeskPet"
+FunctionEnd
+
+; The directory page selects a parent folder. The product folder is appended
+; exactly once, while an existing installation is shown as its parent.
+Function RinaDirectoryPre
+  ${IfThen} $PassiveMode = 1 ${|} Abort ${|}
+  ${GetFileName} "$INSTDIR" $0
+  ${If} $0 == "OurDeskPet"
+    ${GetParent} "$INSTDIR" $INSTDIR
+  ${EndIf}
+FunctionEnd
+
+Function RinaDirectoryLeave
+  ${GetFileName} "$INSTDIR" $0
+  ${If} $0 != "OurDeskPet"
+    StrCpy $INSTDIR "$INSTDIR\OurDeskPet"
+  ${EndIf}
 FunctionEnd
 
 Function PageLeaveRinaLanguage

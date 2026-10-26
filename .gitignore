@@ -9,9 +9,13 @@
 **/__pycache__/
 **/.pytest_cache/
 .build-cache/
+.ourdeskpet-installer-temp/
+.ourdeskpet-installer-review/
 artifacts/
 payload/
 runtime/
+packaging/
+data/
 **/.tools/
 **/*.log
 **/*.lnk
