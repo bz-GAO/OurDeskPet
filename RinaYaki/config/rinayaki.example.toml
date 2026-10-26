@@ -1,0 +1,84 @@
+[paths]
+workspace_root = "workspaces"
+model_cache = "models"
+
+[tools]
+ffmpeg = "ffmpeg"
+ffprobe = "ffprobe"
+yt_dlp = "yt-dlp"
+
+[offline]
+asr_provider = "kotoba_whisper_cpp"
+translation_provider = "qwen_mt"
+translation_profile = "balanced"
+diarization_enabled = false
+
+[offline.kotoba]
+model = "kotoba-whisper-v2.0/ggml-kotoba-whisper-v2.0.bin"
+threads = 8
+quality_chunk_seconds = 15
+
+[offline.api_asr]
+short_file_model = "qwen-audio-3.0-asr-flash"
+long_file_model = "qwen-audio-3.1-asr-flash-filetrans"
+streaming_model = "qwen-audio-3.0-asr-flash-streaming"
+language_hints = ["ja"]
+diarization_enabled = true
+hotwords = {}
+model_status_check_days = 30
+
+# Qwen-MT is accessed through Alibaba Cloud Model Studio's OpenAI-compatible
+# endpoint. The API key and base URL live in .env, never in this file.
+[translation]
+default_profile = "balanced"
+api_key_env = "DASHSCOPE_API_KEY"
+base_url_env = "DASHSCOPE_BASE_URL"
+
+[translation.profiles.realtime]
+label = "流式 / 低延迟"
+provider = "qwen_mt"
+model = "qwen-mt-lite"
+streaming = true
+
+[translation.profiles.balanced]
+label = "均衡（默认）"
+provider = "qwen_mt"
+model = "qwen-mt-flash"
+streaming = true
+
+[translation.profiles.quality]
+label = "高质量"
+provider = "qwen_mt"
+model = "qwen-mt-plus"
+streaming = false
+
+# Optional second pass for terminology, names and context repair. It uses the
+# same Bailian key and endpoint, but stays off until the direct MT path is tested.
+[translation.refinement]
+enabled = false
+provider = "openai_compatible"
+selected = "qwen"
+api_key_env = "DASHSCOPE_API_KEY"
+base_url_env = "DASHSCOPE_BASE_URL"
+
+[translation.refinement.candidates.deepseek]
+model = "deepseek-v4.1-flash"
+reasoning_effort = "low"
+max_completion_tokens = 4096
+
+[translation.refinement.candidates.glm]
+model = "ZHIPU/GLM-5.3-Flash"
+reasoning_effort = "low"
+max_completion_tokens = 4096
+
+[translation.refinement.candidates.qwen]
+model = "qwen3.8-flash"
+reasoning_effort = "none"
+max_completion_tokens = 512
+
+[subtitles]
+default_formats = ["json", "srt", "vtt", "ass"]
+default_mode = "translated"
+font_name = "Noto Sans CJK SC Medium"
+play_res_x = 1920
+play_res_y = 1080

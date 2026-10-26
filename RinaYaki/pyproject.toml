@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rinayaki"
+version = "0.1.0"
+description = "Independent Japanese-first fansubbing pipeline for RinaDesk"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "dashscope>=1.27.5,<2",
+  "pywhispercpp>=1.5.1,<2",
+  "Pillow>=11,<13",
+]
+
+[project.optional-dependencies]
+live = [
+  "websocket-client>=1.8,<2",
+  "numpy>=2,<3",
+  "soundcard>=0.4.5,<0.5",
+]
+webview = [
+  "pywebview>=6.2,<7",
+]
+
+[project.scripts]
+rinayaki = "rinayaki.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

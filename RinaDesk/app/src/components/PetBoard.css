@@ -1,0 +1,123 @@
+.pet-popup-shell { position:absolute; left:50%; width:280px; height:100vh; transform:translateX(-50%); }
+.pet-select-button { position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:180px; height:162px; padding:0; border:0; background:transparent; display:grid; place-items:center; cursor:grab; touch-action:none; }
+.pet-select-button:active { cursor:grabbing; }
+.pet-shell[data-pet-state="sleep"] .pet-select-button { cursor:default; }
+.pet-select-button:focus { outline:none; }
+.pet-select-button .pet-image { width:158px; height:158px; }
+.pet-rest-visual { position:relative; width:158px; height:158px; display:grid; place-items:center; }
+.pet-rest-visual[data-animating]>.pet-image { visibility:hidden; }
+.pet-shell[data-pet-state="sleep"] .pet-rest-visual[data-effect="pixel-mask"]>.pet-image { opacity:1; filter:drop-shadow(0 2px 2px rgba(18,25,33,.12)); }
+.pet-rest-fx,.pet-rest-layer { position:absolute; inset:0; width:158px; height:158px; pointer-events:none; }
+.pet-rest-layer { object-fit:contain; image-rendering:pixelated; }
+.pet-rest-fx { overflow:hidden; }
+.pet-rest-fx i { position:absolute; z-index:4; background:#2e897d; border:1px solid #b6ffda; image-rendering:pixelated; animation:pet-rest-particle 620ms steps(5,end) both; }
+.pet-rest-from { z-index:1; animation:pet-rest-from 820ms steps(7,end) both; }
+.pet-rest-to { z-index:2; animation:pet-rest-to 820ms steps(7,end) both; }
+.pet-rest-strip { z-index:3; animation:pet-rest-strip 560ms steps(5,end) both; }
+.pet-rest-strip-1 { clip-path:inset(9% 0 82%); --rest-shift:-8px; }
+.pet-rest-strip-2 { clip-path:inset(23% 0 68%); --rest-shift:10px; animation-delay:35ms; }
+.pet-rest-strip-3 { clip-path:inset(37% 0 54%); --rest-shift:-13px; animation-delay:70ms; }
+.pet-rest-strip-4 { clip-path:inset(51% 0 40%); --rest-shift:9px; animation-delay:95ms; }
+.pet-rest-strip-5 { clip-path:inset(65% 0 27%); --rest-shift:-7px; animation-delay:120ms; }
+.pet-rest-strip-6 { clip-path:inset(77% 0 15%); --rest-shift:12px; animation-delay:145ms; }
+.pet-rest-strip-7 { clip-path:inset(89% 0 4%); --rest-shift:-9px; animation-delay:170ms; }
+.pet-rest-fx[data-direction="wake"] .pet-rest-from { animation-name:pet-rest-mask-out; }
+.pet-rest-fx[data-direction="wake"] .pet-rest-to { animation-name:pet-rest-wake-in; }
+.pet-rest-fx[data-direction="wake"] .pet-rest-strip { content-visibility:hidden; }
+@keyframes pet-rest-from { 0%,18% {opacity:1;transform:translateX(0)} 26% {transform:translateX(-3px)} 34% {transform:translateX(4px)} 43% {transform:translateX(-2px)} 58% {opacity:.74;transform:translateX(2px)} 68%,100% {opacity:0} }
+@keyframes pet-rest-to { 0%,48% {opacity:0;transform:scale(.88)} 56% {opacity:.45;transform:scale(1.04)} 66% {opacity:.22;transform:translateX(-3px)} 74% {opacity:.82;transform:translateX(2px)} 82%,100% {opacity:1;transform:none} }
+@keyframes pet-rest-strip { 0%,20% {opacity:0;transform:none} 32%,72% {opacity:.88;transform:translateX(var(--rest-shift))} 84%,100% {opacity:0;transform:translateX(0)} }
+@keyframes pet-rest-mask-out { 0%,18% {opacity:1;transform:none} 32% {opacity:.35;transform:scale(1.06)} 45%,100% {opacity:0;transform:scale(.9)} }
+@keyframes pet-rest-wake-in { 0%,28% {opacity:0;clip-path:inset(100% 0 0)} 62% {opacity:.75;clip-path:inset(26% 0 0)} 78%,100% {opacity:1;clip-path:inset(0)} }
+@keyframes pet-rest-particle { 0%,18% {opacity:0;transform:translateY(10px) scale(.5)} 36% {opacity:.95} 82% {opacity:.7} 100% {opacity:0;transform:translateY(-42px) scale(1)} }
+.pet-teleport-fx { position:absolute; width:158px; height:158px; pointer-events:none; overflow:hidden; }
+.pet-quantum-fx { image-rendering:auto; }
+.pet-drag-fx { position:absolute; width:240px; height:200px; bottom:0; left:50%; transform:translateX(-50%); pointer-events:none; image-rendering:pixelated; }
+.alan-visor-speech { position:absolute; width:158px; height:158px; bottom:0; left:50%; transform:translateX(-50%); pointer-events:none; image-rendering:pixelated; }
+.alan-drone-escort { --drone-eye:#63b84d; position:absolute; width:340px; height:210px; bottom:0; left:50%; transform:translateX(-50%); pointer-events:none; image-rendering:pixelated; }
+.alan-drone { position:absolute; width:50px; height:35px; overflow:visible; filter:drop-shadow(0 2px 1px #1118); }
+.alan-drone-left { left:18px; top:66px; }
+.alan-drone-right { right:18px; top:56px; }
+.drone-body{fill:#707a82}.drone-face{fill:#424b52}.drone-eye{fill:var(--drone-eye)}.drone-mouth{fill:#20262a}.drone-rotor{fill:#5c666d}.drone-side{fill:#2f383d}.drone-side-light{fill:#7bd851}
+.alan-drone-escort[data-phase="start"] { --drone-eye:#a9f76d; animation:drone-escort-in 150ms ease-out both; }
+.alan-drone-escort[data-phase="move"] .alan-drone-left { animation:drone-hover-left 720ms steps(2,end) infinite; }
+.alan-drone-escort[data-phase="move"] .alan-drone-right { animation:drone-hover-right 820ms steps(2,end) infinite; }
+.alan-drone-escort[data-phase="release"] { --drone-eye:#dcffad; animation:drone-escort-out 290ms ease-out both; }
+.drone-trail { position:absolute; top:96px; width:28px; height:34px; opacity:.72; }
+.drone-trail-left { left:25px; }.drone-trail-right { right:25px; transform:scaleX(-1); }
+.drone-trail i { position:absolute; background:#67ca88; animation:drone-trail-pixel 460ms steps(3,end) infinite; }
+.drone-trail i:nth-child(1){width:7px;height:7px;left:1px;top:2px}.drone-trail i:nth-child(2){width:5px;height:5px;left:12px;top:15px;animation-delay:110ms}.drone-trail i:nth-child(3){width:3px;height:3px;left:22px;top:27px;animation-delay:220ms}
+@keyframes drone-escort-in { from{opacity:0;transform:translateX(-50%) scale(.88)} to{opacity:1;transform:translateX(-50%) scale(1)} }
+@keyframes drone-escort-out { 0%{opacity:1;transform:translateX(-50%) scale(1)} 45%{opacity:1;transform:translateX(-50%) scale(1.04)} 100%{opacity:0;transform:translateX(-50%) scale(.94)} }
+@keyframes drone-hover-left { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-2px,-2px)} }
+@keyframes drone-hover-right { 0%,100%{transform:translate(0,0)} 50%{transform:translate(2px,-2px)} }
+@keyframes drone-trail-pixel { from{opacity:.9;transform:translate(0,0)} to{opacity:0;transform:translate(9px,13px)} }
+@media (prefers-reduced-motion:reduce) { .pet-drag-fx,.drone-trail {display:none} .alan-drone {animation:none!important} }
+@media (prefers-reduced-motion:reduce) { .pet-rest-fx {display:none} .pet-rest-visual[data-animating]>.pet-image {visibility:visible} }
+.pet-scan-line { position:absolute; left:12%; right:12%; height:2px; background:#b9faff; box-shadow:0 0 7px #65e8ff; animation:pet-scan 600ms linear both; }
+.pet-teleport-fx i { position:absolute; bottom:0; background:#85ecff; box-shadow:0 0 4px #64d5ff; animation:pet-pixel 380ms ease-out both; }
+.pet-teleport-fx i:nth-child(5n) { background:#eda5ce; }
+[data-teleport="out"] .pet-image { animation:pet-project-out 600ms linear both; }
+[data-teleport="out"] .alan-visor-speech { animation:pet-project-out 600ms linear both; }
+[data-teleport="in"] .pet-image { animation:pet-project-in 600ms linear both; }
+[data-teleport="in"] .alan-visor-speech { animation:pet-project-in 600ms linear both; }
+[data-teleport-effect="quantum"][data-teleport="out"] .pet-image { animation-name:pet-quantum-out; }
+[data-teleport-effect="quantum"][data-teleport="out"] .alan-visor-speech { animation-name:pet-quantum-out; }
+[data-teleport-effect="quantum"][data-teleport="in"] .pet-image { animation-name:pet-quantum-in; }
+[data-teleport-effect="quantum"][data-teleport="in"] .alan-visor-speech { animation-name:pet-quantum-in; }
+[data-teleport="hidden"] .pet-image { opacity:0; }
+[data-teleport="hidden"] .alan-visor-speech { opacity:0; }
+[data-teleport]:not([data-teleport="idle"]) .pet-board-popup,
+[data-teleport]:not([data-teleport="idle"]) .pet-unread-dot { visibility:hidden; }
+@keyframes pet-project-out { from {clip-path:inset(0 0 0);opacity:1} to {clip-path:inset(0 0 100%);opacity:.6} }
+@keyframes pet-project-in { from {clip-path:inset(100% 0 0);opacity:.6} to {clip-path:inset(0 0 0);opacity:1} }
+@keyframes pet-quantum-out { from {clip-path:inset(0 0 0);opacity:1} to {clip-path:inset(0 0 100%);opacity:0} }
+@keyframes pet-quantum-in { from {clip-path:inset(100% 0 0);opacity:0} to {clip-path:inset(0 0 0);opacity:1} }
+@keyframes pet-scan { from {bottom:0} to {bottom:100%} }
+@keyframes pet-pixel { from {transform:translateY(0);opacity:0} 20% {opacity:.9} to {transform:translateY(-120px);opacity:0} }
+@media (prefers-reduced-motion:reduce) { .pet-teleport-fx {display:none} [data-teleport] .pet-image {animation:none!important;opacity:1!important} }
+.pet-board-popup { position:absolute; top:6px; left:4px; right:4px; aspect-ratio:260/180; animation:board-appear 140ms ease-out; transform-origin:50% 100%; }
+.board-frame { display:block; width:100%; height:100%; filter:drop-shadow(0 2px 2px #33455b15); }
+.board-stars { position:absolute; right:2%; top:0; display:flex; gap:1px; align-items:center; }
+.board-star { width:36px; height:38px; padding:0; border:0; background:transparent; color:#3f5d72; cursor:pointer; }
+.board-star:nth-child(2) { transform:translateY(-5px); }
+.board-star svg { width:100%; height:100%; overflow:visible; }
+.star-shape { fill:#c5eaf0; stroke:#6d9eaf; stroke-width:1.3; }
+.board-star:hover .star-shape,.board-star:focus-visible .star-shape { fill:#fff; stroke:#526783; stroke-width:2; }
+.board-star:focus-visible { outline:2px solid #8290a8; outline-offset:1px; border-radius:8px; }
+.board-star:last-child:hover { color:#984352; }
+.board-status { position:absolute; left:14%; right:14%; top:39%; bottom:15%; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; color:#4b596e; text-align:center; }
+.board-face { color:#d89abd; font-size:22px; line-height:1; letter-spacing:4px; }
+.board-status p { margin:8px 0 0; font-family:'Segoe UI','Microsoft YaHei UI',sans-serif; font-size:12px; line-height:1.3; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+@keyframes board-appear { from { opacity:0; transform:translateY(5px) scale(.97); } to { opacity:1; transform:none; } }
+@media(prefers-reduced-motion:reduce) { .pet-board-popup { animation:none; } }
+
+/* Render the approved raster without changing its shape, expression or star sizes. */
+.pet-board-popup { top:auto; bottom:172px; left:calc(50% - 98px); right:auto; width:196px; aspect-ratio:1216/896; }
+.board-stars { inset:0; display:block; pointer-events:none; }
+.board-star { position:absolute; transform:translate(-50%,-50%); pointer-events:auto; width:26px; height:26px; border-radius:50%; color:#486878; }
+.board-star:nth-child(1) { left:64.5%; top:11.5%; }
+.board-star:nth-child(2) { left:81.3%; top:7.9%; width:26px; height:26px; transform:translate(-50%,-50%); }
+.board-star:nth-child(3) { left:92.8%; top:14.7%; }
+.board-star svg { opacity:0; transition:opacity 120ms; }
+.board-star:hover svg,.board-star:focus-visible svg { opacity:1; }
+
+/* Star artwork stays unchanged; preview the action on the large display instead. */
+.star-highlight,.board-screen-preview { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.board-action-preview { position:absolute; left:35%; top:43%; width:30%; height:31%; color:#d690b6; fill:currentColor; pointer-events:none; }
+.board-action-preview svg { width:100%; height:100%; }
+
+/* Three gentle pulses; preserve the original artwork and transparent silhouette. */
+.board-notice-wash { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; opacity:0; }
+.pet-board-popup[data-notifying="true"] .board-notice-wash { animation:board-notice-pulse 800ms ease-in-out 3; }
+@keyframes board-notice-pulse { 0%,100% {opacity:0;} 50% {opacity:.72;} }
+.pet-unread-dot { position:absolute; right:32px; top:24px; width:9px; height:9px; border:2px solid #fff; border-radius:50%; background:#db759f; pointer-events:none; }
+@media(prefers-reduced-motion:reduce) { .pet-board-popup[data-notifying="true"] .board-notice-wash { animation:none; opacity:.25; } }
+
+/* Only the smile area reacts; leave the original frame and stars untouched. */
+.pet-settings-face{position:absolute;left:24%;top:41%;width:52%;height:45%;border:0;background:transparent;border-radius:20%;cursor:pointer}
+.pet-settings-face:focus-visible{outline:1px dashed #ca7ca9;outline-offset:1px}
+.board-settings-highlight{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 120ms}
+.pet-board-popup:has(.pet-settings-face:hover) .board-settings-highlight,.pet-board-popup:has(.pet-settings-face:focus-visible) .board-settings-highlight{opacity:1}
+/* The artwork is wider; keep hover targets usable without overlapping neighbours. */
+.board-action-preview{left:37%;top:47%;width:26%;height:30%}

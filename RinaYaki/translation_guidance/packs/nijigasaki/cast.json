@@ -1,0 +1,370 @@
+[
+  {
+    "id": "cast.hinaki",
+    "kind": "voice_actor",
+    "source": "矢野妃菜喜",
+    "target": "矢野妃菜喜",
+    "match": "exact_name",
+    "character_id": "character.yu",
+    "aliases": [
+      {
+        "source": "妃菜喜",
+        "target": "妃菜喜",
+        "kind": "short_name",
+        "match": "context_required"
+      },
+      {
+        "source": "ひなきちゃん",
+        "target": "妃菜喜酱",
+        "kind": "name_with_honorific",
+        "match": "context_required",
+        "evidence": [
+          "hinaki_kaori_radio",
+          "hinaki_bili"
+        ],
+        "translation_basis": "name_with_honorific",
+        "target_status": "proposed_for_user_review",
+        "note": "保留名字＋亲昵称呼，不因为说了ちゃん就改成其他爱称。"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.aguri",
+    "kind": "voice_actor",
+    "source": "大西亜玖璃",
+    "target": "大西亚玖璃",
+    "match": "exact_name",
+    "character_id": "character.ayumu",
+    "aliases": [
+      {
+        "source": "亜玖璃",
+        "target": "亚玖璃",
+        "kind": "short_name",
+        "match": "context_required"
+      },
+      {
+        "source": "あぐぽん",
+        "target": "阿兔嘭",
+        "kind": "nickname",
+        "match": "context_required",
+        "evidence": [
+          "aguri_radio",
+          "aguri_bili"
+        ],
+        "translation_basis": "community_equivalent",
+        "target_status": "proposed_for_user_review",
+        "note": "保留爱称层级，不自动缩成阿兔；不是逐字音译规则。"
+      },
+      {
+        "source": "ぽんさん",
+        "target": "ぽんさん",
+        "kind": "nickname",
+        "match": "context_required",
+        "evidence": [
+          "aguri_pon_forum",
+          "user_nickname_clues"
+        ],
+        "translation_basis": "preserve_source",
+        "target_status": "proposed_for_user_review",
+        "note": "人物归属仅有社区讨论佐证；须明确大西语境。按用户要求原样保留，不翻成嘭桑/嘭先生。"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.mayu",
+    "kind": "voice_actor",
+    "source": "相良茉優",
+    "target": "相良茉优",
+    "match": "exact_name",
+    "character_id": "character.kasumi",
+    "aliases": [
+      {
+        "source": "茉優",
+        "target": "茉优",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.kaori",
+    "kind": "voice_actor",
+    "source": "前田佳織里",
+    "target": "前田佳织里",
+    "match": "exact_name",
+    "character_id": "character.shizuku",
+    "aliases": [
+      {
+        "source": "佳織里",
+        "target": "佳织里",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.miyu",
+    "kind": "voice_actor",
+    "source": "久保田未夢",
+    "target": "久保田未梦",
+    "match": "exact_name",
+    "character_id": "character.karin",
+    "aliases": [
+      {
+        "source": "未夢",
+        "target": "未梦",
+        "kind": "short_name",
+        "match": "context_required"
+      },
+      {
+        "source": "みゆたん",
+        "target": "未梦碳",
+        "kind": "nickname",
+        "match": "context_required",
+        "evidence": [
+          "miyu_profile",
+          "miyu_bili"
+        ],
+        "translation_basis": "community_equivalent",
+        "target_status": "proposed_for_user_review",
+        "note": "たん是爱称表达的一部分；不做全局たん→碳替换。"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.natsumi",
+    "kind": "voice_actor",
+    "source": "村上奈津実",
+    "target": "村上奈津实",
+    "match": "exact_name",
+    "character_id": "character.ai",
+    "aliases": [
+      {
+        "source": "奈津実",
+        "target": "奈津实",
+        "kind": "short_name",
+        "match": "context_required"
+      },
+      {
+        "source": "なっちゃん",
+        "target": "奈酱",
+        "kind": "nickname",
+        "match": "context_required",
+        "evidence": [
+          "natsumi_interview",
+          "natsumi_maria_bili"
+        ],
+        "translation_basis": "community_equivalent",
+        "target_status": "proposed_for_user_review",
+        "note": "此称呼并非村上独占，必须确认人物。不能对所有なっちゃん应用。"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.akari",
+    "kind": "voice_actor",
+    "source": "鬼頭明里",
+    "target": "鬼头明里",
+    "match": "exact_name",
+    "character_id": "character.kanata",
+    "aliases": [
+      {
+        "source": "明里",
+        "target": "明里",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.coco",
+    "kind": "voice_actor",
+    "source": "林 鼓子",
+    "target": "林鼓子",
+    "match": "exact_name",
+    "character_id": "character.setsuna",
+    "aliases": [
+      {
+        "source": "鼓子",
+        "target": "鼓子",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "现任雪菜声优。旧素材中的楠木ともり/ともりる不得映射到林鼓子。"
+  },
+  {
+    "id": "cast.maria",
+    "kind": "voice_actor",
+    "source": "指出毬亜",
+    "target": "指出毬亚",
+    "match": "exact_name",
+    "character_id": "character.emma",
+    "aliases": [
+      {
+        "source": "毬亜",
+        "target": "毬亚",
+        "kind": "short_name",
+        "match": "context_required"
+      },
+      {
+        "source": "ちゅんるん",
+        "target": "麻圆",
+        "kind": "nickname",
+        "match": "context_required",
+        "evidence": [
+          "maria_x",
+          "maria_bili"
+        ],
+        "translation_basis": "cross_community_equivalent",
+        "target_status": "proposed_for_user_review",
+        "note": "正确假名为ちゅんるん（chunrun）。这是中日社区同一人物的爱称对应，不是‘麻圆’的逐字发音；まりあ/毬亜不自动改成麻圆。"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.chiemi",
+    "kind": "voice_actor",
+    "source": "田中ちえ美",
+    "target": "田中千惠美",
+    "match": "exact_name",
+    "character_id": "character.rina",
+    "aliases": [
+      {
+        "source": "ちえ美",
+        "target": "千惠美",
+        "kind": "short_name",
+        "match": "context_required"
+      },
+      {
+        "source": "ちぇみー",
+        "target": "切咪",
+        "kind": "nickname",
+        "match": "context_required",
+        "evidence": [
+          "chiemi_nickname",
+          "user_preference"
+        ],
+        "note": "保留爱称，不展开为田中千惠美，更不能改成天王寺璃奈。"
+      },
+      {
+        "source": "田中",
+        "target": "田中",
+        "kind": "surname",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.moeka",
+    "kind": "voice_actor",
+    "source": "小泉萌香",
+    "target": "小泉萌香",
+    "match": "exact_name",
+    "character_id": "character.shioriko",
+    "aliases": [
+      {
+        "source": "萌香",
+        "target": "萌香",
+        "kind": "short_name",
+        "match": "context_required"
+      },
+      {
+        "source": "もえぴ",
+        "target": "萌P",
+        "kind": "nickname",
+        "match": "context_required",
+        "evidence": [
+          "moeka_amuse",
+          "moeka_bili"
+        ],
+        "translation_basis": "community_equivalent",
+        "target_status": "proposed_for_user_review",
+        "note": "读作 moepi；用户记忆 moep 可用于理解，但不做日文同音强制纠错。"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.shu",
+    "kind": "voice_actor",
+    "source": "内田 秀",
+    "target": "内田秀",
+    "match": "exact_name",
+    "character_id": "character.mia",
+    "aliases": [
+      {
+        "source": "秀",
+        "target": "秀",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "cast.akina",
+    "kind": "voice_actor",
+    "source": "法元明菜",
+    "target": "法元明菜",
+    "match": "exact_name",
+    "character_id": "character.lanzhu",
+    "aliases": [
+      {
+        "source": "明菜",
+        "target": "明菜",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  }
+]

@@ -1,0 +1,92 @@
+/* Desk-wide Paper White / board-pink system. See docs/DESIGN-SYSTEM.md. */
+:root {
+  --rina-gray: #a0a8bd;
+  --rina-gray-panel: #eef0f5;
+  --rina-gray-selected: #dde2ec;
+  --rina-gray-border: #cbd2df;
+  --rina-ink: #354156;
+  --rina-muted: #68748a;
+  --rina-pink: #bd789f;
+  --rina-pink-border: #e4cbd9;
+  --rina-pink-surface: #fffafd;
+}
+:root[data-rina-theme="rose"] {
+  --rina-gray-panel:#f9e4f0;
+  --rina-gray-selected:#efc9de;
+  --rina-gray-border:#dda6c3;
+  --rina-ink:#5a3850;
+  --rina-muted:#885f78;
+  --rina-pink:#b96895;
+  --rina-pink-border:#dfb9cf;
+  --rina-pink-surface:#fff6fb;
+}
+.settings-page {color:var(--rina-ink)}
+.settings-page .diagnostics-panel,
+.settings-page .setting-row,
+.settings-page .api-editor,
+.settings-page .art-detail,
+.settings-page .extensions-tool-row,
+.settings-page .extensions-live-entry {
+  border:1px solid var(--rina-gray-border);
+  border-radius:9px;
+  background:var(--rina-gray-panel);
+  color:var(--rina-ink);
+  padding:12px;
+}
+.settings-page .api-editor {min-width:0}
+.settings-page :is(h2,.chat-settings h2,.api-fields label,.diagnostics-panel dt) {color:var(--rina-muted)}
+.settings-page .art-detail-heading h2 {color:var(--rina-ink)}
+.settings-page .art-catalog button {background:var(--rina-pink-surface);border:1px solid var(--rina-pink-border);border-left:3px solid transparent;border-radius:8px}
+.settings-page .art-catalog button[aria-pressed=true] {background:var(--rina-gray-selected);border-color:var(--rina-gray-border);border-left-color:var(--rina-gray);color:var(--rina-ink)}
+.settings-page .art-catalog button:hover {background:var(--rina-gray-panel)}
+.settings-page :is(.settings-tabs,.extensions-tabs,.yaki-settings-tabs) button[aria-current],
+.settings-page .api-profiles button[aria-pressed=true] {
+  background:var(--rina-gray-selected);border-color:var(--rina-gray);color:var(--rina-ink);
+}
+.settings-page input[type=checkbox] {accent-color:#75839a}
+.settings-page :is(button,input,select):focus-visible {outline:2px solid #75839a;outline-offset:2px}
+.settings-page .api-actions .settings-primary,.settings-page .art-enable {background:var(--rina-gray-selected);border:1px solid var(--rina-gray);color:var(--rina-ink)}
+.dialogue-page .chat-mode-switch,.dialogue-page .chat-sidebar-tabs {border-color:var(--rina-pink-border);background:var(--rina-pink-surface)}
+.dialogue-page .chat-mode-switch button[data-active=true],.dialogue-page .chat-sidebar-tabs button[data-active=true] {background:var(--rina-gray-selected);color:var(--rina-ink);box-shadow:inset 0 0 0 1px var(--rina-gray-border)}
+.dialogue-page .chat-sidebar-heading {background:var(--rina-gray-panel);border-bottom-color:var(--rina-pink-border)}
+.dialogue-page .chat-current-conversation {background:var(--rina-gray-panel);border-color:var(--rina-gray-border)}
+.dialogue-page .chat-sidebar-section {border-color:var(--rina-pink-border)}
+.rina-confirm-dialog {background:var(--rina-gray-panel);border-color:var(--rina-pink-border)}
+.rina-confirm-actions button:last-child {background:var(--rina-gray-selected);border-color:var(--rina-gray);color:var(--rina-ink)}
+.settings-page .art-add {min-height:70px;border:1px dashed var(--rina-pink)!important;display:grid;place-content:center;text-align:center}
+.art-custom-editor {overflow:auto;gap:10px;padding:2px}
+.art-name {display:grid;gap:5px;color:var(--rina-muted);font-size:12px}
+.art-name input {padding:8px;border:1px solid var(--rina-pink-border);border-radius:8px;background:var(--rina-pink-surface);color:var(--rina-ink);font:inherit;min-width:0}
+.art-upload-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.art-upload {position:relative;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px dashed var(--rina-pink);border-radius:10px;background:var(--rina-gray-panel);color:var(--rina-muted);cursor:pointer;padding:8px}
+.art-upload>span {font-size:30px;font-weight:300}
+.art-upload img {width:100%;height:90px;object-fit:contain}
+.art-upload strong {font-size:11px;font-weight:500}
+.art-upload input {display:none}
+.art-inline-action {border:1px solid var(--rina-pink-border);border-radius:8px;background:var(--rina-pink-surface);color:var(--rina-muted);padding:6px 9px;cursor:pointer;font:inherit;font-size:11px}
+.art-theme-panel{min-height:0;padding:5px;background:transparent}.art-theme-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.art-theme-options button{display:grid;gap:9px;padding:13px;border:1px solid var(--rina-gray-border);border-radius:11px;background:var(--rina-pink-surface);color:var(--rina-ink);cursor:pointer}.art-theme-options button[aria-pressed=true]{box-shadow:inset 0 0 0 2px var(--rina-gray);background:var(--rina-gray-selected)}.art-theme-swatches{display:grid;grid-template-columns:1fr 1fr;height:44px;overflow:hidden;border-radius:7px;border:1px solid #cbd2df}.art-theme-swatches i{display:block}.art-theme-swatches[data-theme=paper] i:first-child{background:#eef0f5}.art-theme-swatches[data-theme=paper] i:last-child{background:#fffafd}.art-theme-swatches[data-theme=rose] i:first-child{background:#f9e4f0}.art-theme-swatches[data-theme=rose] i:last-child{background:#efc9de}.art-heading-actions{display:flex;align-items:center;justify-content:flex-end;gap:5px;min-width:0}.art-heading-actions>span{color:var(--rina-pink);font-size:11px;white-space:nowrap}.art-icon-action{display:grid;place-items:center;width:24px;height:24px;padding:0;border:0;border-radius:999px;background:transparent;color:var(--rina-muted);cursor:pointer}.art-icon-action:hover{background:var(--rina-gray-selected)}.art-rename-input{min-width:0;flex:1;padding:5px 7px;border:1px solid var(--rina-gray);border-radius:7px;background:var(--rina-pink-surface);color:var(--rina-ink);font:inherit;font-size:12px}.art-delete-action{color:#9f4558}
+.art-custom-editor .art-enable-row {padding-bottom:10px}
+.art-tab {display:flex;flex:1;min-width:0;min-height:0}
+
+/* Leave breathing room for rounded borders and keyboard focus inside scrollports. */
+.settings-page .settings-scroll {padding:8px 9px 12px 5px;scroll-padding:8px;scrollbar-gutter:stable}
+.settings-page .extensions-tool-body,.settings-page .extensions-live-scroll,.settings-page .tomo-page {padding-left:5px;padding-right:9px;scroll-padding:8px;scrollbar-gutter:stable}
+.settings-page .extensions-tabs {padding-top:3px;padding-left:3px;padding-right:3px}
+.settings-page .extensions-content :is(input,select,button):focus-visible {outline-offset:-2px;outline-color:var(--rina-pink)}
+.settings-page .extensions-content :is(input,select) {background:var(--rina-pink-surface);color:var(--rina-ink);border-color:var(--rina-gray-border)}
+.settings-page .extensions-content select option {background:var(--rina-pink-surface);color:var(--rina-ink)}
+.settings-page .extensions-content :is(button,a[role=button]) {color:var(--rina-ink);border-color:var(--rina-gray-border)}
+.settings-page .extensions-content :is(.extensions-state,.extensions-hint,.extensions-empty,.extensions-field label,.extensions-flow-heading span,.yaki-settings-fields small,.tomo-note,.tomo-model) {color:var(--rina-muted)}
+.settings-page .extensions-content :is(button,a[role=button]):hover:not(:disabled) {background:var(--rina-gray-selected);border-color:var(--rina-gray)}
+.settings-page .extensions-content :is(button,a[role=button]):disabled {opacity:.58}
+.settings-page .extensions-content :is(.extensions-primary,.tomo-primary) {background:var(--rina-gray-selected);border:1px solid var(--rina-gray-border);color:var(--rina-ink)}
+.settings-page .extensions-content :is(.tomo-status-grid>div,.tomo-empty,.tomo-settings fieldset) {background:var(--rina-gray-panel);border-color:var(--rina-gray-border);color:var(--rina-ink)}
+.settings-page .extensions-content :is(.tomo-status-grid strong,.tomo-settings legend,.extensions-title) {color:var(--rina-ink)}
+.settings-page .extensions-content input:is([type=checkbox],[type=radio]) {accent-color:var(--rina-pink)}
+.get-api {min-width:0;width:100%}
+.get-api>button {width:100%;min-height:34px;padding:7px 14px;border:1px solid var(--rina-gray-border);border-radius:9px;background:var(--rina-pink-surface);color:var(--rina-ink);font:inherit;cursor:pointer}
+.get-api>span {display:block;font-size:11px;color:#a94362;margin-top:5px}
+.api-group-heading {display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;color:var(--rina-ink)}
+.api-group-heading .get-api {width:auto}
+.settings-page .billing-status.is-settings {background:var(--rina-gray-panel);border-color:var(--rina-gray-border);color:var(--rina-ink)}
+.settings-page .billing-status.is-settings :is(dt,.billing-status-heading select) {color:var(--rina-muted)}

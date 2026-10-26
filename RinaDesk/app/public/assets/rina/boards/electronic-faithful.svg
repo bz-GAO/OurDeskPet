@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="160 48 1216 896">
+  <title>Rina electronic board — tapered vector frame</title>
+  <defs>
+    <linearGradient id="shell" x2="0.15" y2="1"><stop stop-color="#a2effb"/><stop offset="1" stop-color="#83e1f1"/></linearGradient>
+    <linearGradient id="star" x2="0.2" y2="1"><stop stop-color="#a8effc"/><stop offset="1" stop-color="#91e5f6"/></linearGradient>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#e9edf1" stroke-width="1"/></pattern>
+  </defs>
+  <g stroke="#277e9c" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M180 269 429 143Q435 139 441 143L768 252 1095 143Q1101 139 1107 143L1356 269Q1364 273 1362 283L1252 800 1120 929H416L284 800 174 283Q172 273 180 269Z" fill="url(#shell)"/>
+    <path d="M242 285 443 179 768 291 1093 179 1294 285 1284 306 1093 212 768 322 443 212 252 306Z" fill="#37b6ce" stroke="#2996b1" stroke-width="3"/>
+    <path d="M212 342H244L333 783H303Z M1292 342H1324L1233 783H1203Z" fill="#35b2c9" stroke="#2693ad" stroke-width="3"/>
+    <path d="M451 244 768 344 1085 244 1228 313 1223 359 1256 381 1176 801 1086 896H450L360 801 280 381 313 359 308 313Z" fill="#2997b2" stroke="none"/>
+    <path d="M452 254 767 354 1080 254 1211 318 1207 365 1240 387 1163 791 1078 881 455 881 371 791 295 387 325 365 320 318Z" fill="#fff" stroke="#277e9c" stroke-width="4"/>
+  </g>
+  <path d="M452 254 767 354 1080 254 1211 318 1207 365 1240 387 1163 791 1078 881 455 881 371 791 295 387 325 365 320 318Z" fill="url(#grid)" stroke="#277e9c" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M456 437h68v34h-68Z M524 471h67v34h-67Z M591 505h39v34h-39Z M524 539h67v35h-67Z M456 574h68v34h-68Z M456 638h38v38h-38Z M524 638h37v38h-37Z M634 656h267v34h-267Z M634 690h34v27h-34Z M868 690h33v27h-33Z M668 717h34v31h-34Z M834 717h34v31h-34Z M702 748h34v31h-34Z M801 748h33v31h-33Z M736 779h65v36h-65Z M1012 437h68v34h-68Z M945 471h67v34h-67Z M906 505h39v34h-39Z M945 539h67v35h-67Z M1012 574h68v34h-68Z M1042 638h38v38h-38Z M975 638h37v38h-37Z" fill="#ee91c0"/>
+  <g fill="url(#star)" stroke="#277e9c" stroke-width="4" stroke-linejoin="round"><polygon points="902,154 930,145 940,116 961,140 988,140 974,167 980,196 950,188 923,202 924,174"/><polygon points="1049,107 1091,96 1112,62 1137,98 1176,109 1147,140 1152,186 1114,169 1072,189 1075,140"/><polygon points="1191,176 1224,169 1248,139 1267,173 1297,183 1271,205 1270,242 1238,224 1203,231 1209,196"/></g>
+</svg>

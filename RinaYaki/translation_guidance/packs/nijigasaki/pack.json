@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "pack_id": "lovelive.nijigasaki",
+  "name": "虹咲",
+  "version": "0.2.0",
+  "status": "draft_for_user_review",
+  "source_language": "ja",
+  "target_language": "zh-Hans",
+  "domain_hint": "These subtitles discuss Love Live! Nijigasaki characters and cast. Preserve the distinction between a character and her voice actor. Keep nicknames and honorifics natural to the speaker's tone; use the supplied terminology when it applies.",
+  "runtime_enabled": false,
+  "data_files": [
+    "characters.json",
+    "cast.json",
+    "terms.json"
+  ],
+  "review_files": [
+    "nickname-candidates.json",
+    "honorific-policy.json"
+  ],
+  "sources_file": "sources.json",
+  "expected_counts": {
+    "characters": 13,
+    "cast": 13,
+    "terms": 11
+  },
+  "rules": {
+    "entity_relations_are_not_replacements": true,
+    "preserve_alias_register": true,
+    "ambiguous_terms_require_context": true,
+    "no_asr_fuzzy_correction": true,
+    "source_text_is_not_modified": true,
+    "prefer_longest_match": true,
+    "conflicts": "ask_or_skip",
+    "normalization": "NFKC；姓名内部空白可忽略；不做任意子串、同音或拼音模糊匹配。",
+    "honorific_policy": "仅使用明确收录的名字＋敬称映射；候选规则见 honorific-policy.json，不进行全局ちゃん→酱替换。"
+  },
+  "note": "本包仍属待审核草案；默认不启用。用户在实时界面明确勾选草案试用后，可按会话加载 data_files；review_files 永不加载。短称需人物语境；正式名称固定译法也仅适用于已确认的命中。"
+}

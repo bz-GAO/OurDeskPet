@@ -1,0 +1,249 @@
+[
+  {
+    "id": "character.yu",
+    "kind": "character",
+    "source": "高咲 侑",
+    "target": "高咲侑",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "侑",
+        "target": "侑",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "高咲侑属于本示例的13位主要角色，但不是第13位学园偶像。"
+  },
+  {
+    "id": "character.ayumu",
+    "kind": "character",
+    "source": "上原歩夢",
+    "target": "上原步梦",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "歩夢",
+        "target": "步梦",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "character.kasumi",
+    "kind": "character",
+    "source": "中須かすみ",
+    "target": "中须霞",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "かすみ",
+        "target": "霞",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "character.shizuku",
+    "kind": "character",
+    "source": "桜坂しずく",
+    "target": "樱坂雫",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "しずく",
+        "target": "雫",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "character.karin",
+    "kind": "character",
+    "source": "朝香果林",
+    "target": "朝香果林",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "果林",
+        "target": "果林",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "character.ai",
+    "kind": "character",
+    "source": "宮下 愛",
+    "target": "宫下爱",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "愛",
+        "target": "爱",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "愛是普通词，也可指人名；不能仅命中单字就替换为宫下爱。"
+  },
+  {
+    "id": "character.kanata",
+    "kind": "character",
+    "source": "近江彼方",
+    "target": "近江彼方",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "彼方",
+        "target": "彼方",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "彼方也有普通词义；需要角色语境。"
+  },
+  {
+    "id": "character.setsuna",
+    "kind": "character",
+    "source": "優木せつ菜",
+    "target": "优木雪菜",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "せつ菜",
+        "target": "雪菜",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "character.emma",
+    "kind": "character",
+    "source": "エマ・ヴェルデ",
+    "target": "艾玛·维尔德",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "エマ",
+        "target": "艾玛",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "character.rina",
+    "kind": "character",
+    "source": "天王寺璃奈",
+    "target": "天王寺璃奈",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "璃奈",
+        "target": "璃奈",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "character.shioriko",
+    "kind": "character",
+    "source": "三船栞子",
+    "target": "三船栞子",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "栞子",
+        "target": "栞子",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "character.mia",
+    "kind": "character",
+    "source": "ミア・テイラー",
+    "target": "米娅·泰勒",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "ミア",
+        "target": "米娅",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  },
+  {
+    "id": "character.lanzhu",
+    "kind": "character",
+    "source": "鐘 嵐珠",
+    "target": "钟岚珠",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "嵐珠",
+        "target": "岚珠",
+        "kind": "short_name",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": ""
+  }
+]

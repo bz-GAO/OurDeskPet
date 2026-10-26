@@ -1,0 +1,1 @@
+# Use CARGO_TARGET_DIR for machine-specific build caches; Cargo defaults remain portable.

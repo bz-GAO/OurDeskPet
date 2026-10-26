@@ -1,0 +1,5 @@
+.project-settings-anchor{display:contents}
+.project-settings-result{align-self:stretch;margin:4px 18px;color:#7c6c7b;font-size:13px}
+.project-settings-comparison{max-height:260px;overflow:auto;margin-top:10px}
+.project-settings-comparison table{width:100%;border-collapse:collapse;text-align:left}
+.project-settings-comparison th,.project-settings-comparison td{padding:8px;border-bottom:1px solid #eedfe9;overflow-wrap:anywhere}

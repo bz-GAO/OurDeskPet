@@ -1,0 +1,45 @@
+{
+  "status": "draft_for_user_review",
+  "runtime_enabled": false,
+  "policy": [
+    "先确认名字对应实体，再处理敬称；不能靠ちゃん识别人。",
+    "已收录具体爱称优先：なっちゃん→奈酱、みゆたん→未梦碳；不要拆成通用后缀。",
+    "普通名字＋ちゃん可建议名字＋酱，但不等于该人的社区爱称。",
+    "さん不一律译成桑/先生/女士；按语气与人物语境处理。",
+    "ぽんさん为明确保留原文例外。"
+  ],
+  "examples": [
+    {
+      "entity_id": "cast.maria",
+      "source": "まりあちゃん",
+      "suggested_target": "毬亚酱",
+      "basis": "constructed_example",
+      "enabled": false,
+      "note": "规则演示，未逐句核验实际用例；不是麻圆的自动替代。"
+    },
+    {
+      "entity_id": "cast.miyu",
+      "source": "みゆちゃん",
+      "suggested_target": "未梦酱",
+      "basis": "constructed_example",
+      "enabled": false,
+      "note": "与みゆたん区别处理。"
+    },
+    {
+      "entity_id": "cast.natsumi",
+      "source": "なつみちゃん",
+      "suggested_target": "奈津实酱",
+      "basis": "constructed_example",
+      "enabled": false,
+      "note": "与なっちゃん区别处理。"
+    },
+    {
+      "entity_id": "cast.shu",
+      "source": "しゅうちゃん",
+      "suggested_target": "秀酱",
+      "basis": "constructed_example",
+      "enabled": false,
+      "note": "先保留在待审区；称呼并非该声优独占。"
+    }
+  ]
+}

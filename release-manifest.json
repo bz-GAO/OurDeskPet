@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "edition": "release",
+  "repository": "https://github.com/bz-GAO/OurDeskPet",
+  "components": {
+    "RinaDesk": {
+      "source": "https://github.com/bz-GAO/RinaDesk",
+      "revision": "277a0d4947722953a873170a661dc0902cf861c9"
+    },
+    "RinaTomo": {
+      "source": "https://github.com/bz-GAO/RinaTomo",
+      "revision": "5291008b49f7b80362853cd22302cc4f49bc50c6"
+    },
+    "RinaYaki": {
+      "source": "https://github.com/bz-GAO/RinaYaki",
+      "revision": "fd2d4875adbeb98e226e1f4612038f6a28dbb82b"
+    }
+  }
+}

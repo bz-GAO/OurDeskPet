@@ -1,0 +1,44 @@
+RinaDesk 使用与资源许可（测试版）
+作者：@bz-GAO
+项目：https://github.com/bz-GAO/OurDeskPet
+更新日期：2026-10-26
+
+一、允许的使用
+本安装包用于个人非商业学习、体验、测试与作品评审。你可以在自己的设备上安装和使用。
+当前为测试版；功能、兼容性与第三方素材清单仍在整理。
+
+二、项目自有内容禁止未经许可的商业使用
+未经作者书面许可，不得将本项目自有的程序、文档、设计或资源用于商业用途，包括但不限于收费销售、付费服务、商业授权转售及商业产品的捆绑分发。
+不得删除或伪造作者署名，或将他人作品冒称为自己的成果。
+
+三、美术、音频及第三方内容
+美术、角色形象、音频、字体及其他第三方内容的权利归各自权利人所有。
+未经相应权利人许可，不得擅自提取、转载、再分发、售卖素材，或制作并传播未经授权的衍生资源包；个人非商业用途也不自动获得传播许可。
+本协议不代表作者拥有全部第三方素材，也不代替相应权利人的授权。
+已另行附带许可的第三方软件、字体及依赖，仍依其原有许可使用；本协议不收回其原许可已授予的权利。
+用户自行导入的内容、声音及音色，须具有相应使用权限；导入行为不授予其他用户使用或传播这些内容的权利。
+
+四、API、网络和账号
+模型、转写、翻译、搜索和语音服务由所选服务商提供，可能产生费用。使用自己的账号和 API Key；计费以服务商记录为准。
+发送给模型的消息和所选附件、提交处理的视频音频，会按对应功能发送至所选服务。不要提交无权处理或不适合向服务商提供的内容。
+账务授权为可选的余额查询能力，与模型 API Key 分开配置。安装包不提供作者的账号、密钥、登录缓存或私有克隆音色。
+
+五、安装、数据与卸载
+更新或修复默认保留用户设置、授权和会话。只有界面明确说明并由用户确认的数据删除操作，才应清除对应数据。
+Yaki、Tomo 的工程、账号、媒体和缓存由对应组件管理；卸载 Desk 不等于删除这些内容。
+
+六、测试版说明
+模型回答和自动生成内容需要核对。当前测试版不承诺输出准确、任务永不中断或适用于所有设备。
+如不接受以上条款，请取消安装。
+
+---
+
+RinaDesk Terms of Use and Resources (Test Build)
+Author: @bz-GAO — https://github.com/bz-GAO/OurDeskPet
+
+Use this test build for personal non-commercial learning, evaluation and testing.
+Commercial use of project-owned software, documentation, designs or resources requires the author's written permission. Do not remove attribution or misrepresent authorship.
+Artwork, characters, audio and other third-party materials belong to their respective rights holders. Extraction, republication, redistribution, sale or distribution of derivative resource packs requires the relevant permission, including for personal non-commercial sharing. This agreement does not grant third-party rights. Dependencies with separate licenses remain governed by those licenses.
+Use your own API credentials and accounts. Cloud services may charge fees and receive the content you submit to the selected feature. Private recordings, cloned voice IDs, author credentials and login caches are not part of the distributable package.
+Updates and repairs preserve user data by default; explicit confirmed removal actions govern deletion. Yaki/Tomo projects and caches are managed by their respective components.
+This is a test build. Verify generated content and task results. Cancel installation if you do not accept these terms.

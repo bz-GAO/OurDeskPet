@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "reviewed": "2026-10-17",
+  "currency": "CNY",
+  "amount_unit": "micro-CNY",
+  "token_price_unit": "CNY / 1,000,000 tokens",
+  "cases": [
+    {"provider": "deepseek", "model": "deepseek-flash", "usage": {"prompt_tokens": 100, "completion_tokens": 10, "prompt_cache_hit_tokens": 50}, "expected_amount_micro": 182, "expected_tokens": 110},
+    {"provider": "bailian", "model": "deepseek-v4.1-flash", "usage": {"prompt_tokens": 100, "completion_tokens": 10, "prompt_cache_hit_tokens": 50}, "expected_amount_micro": 182, "expected_tokens": 110},
+    {"provider": "bailian", "model": "qwen3.8-flash", "usage": {"prompt_tokens": 100, "completion_tokens": 10}, "expected_amount_micro": 107, "expected_tokens": 110},
+    {"provider": "bailian", "model": "qwen-mt-flash", "usage": {"prompt_tokens": 100, "completion_tokens": 10}, "expected_amount_micro": 90, "expected_tokens": 110}
+  ]
+}

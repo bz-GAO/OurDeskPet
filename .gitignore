@@ -1,0 +1,21 @@
+# Private data and local build outputs
+**/.env
+**/.env.*
+!**/.env.example
+**/.venv/
+**/node_modules/
+**/target/
+**/dist/
+**/__pycache__/
+**/.pytest_cache/
+.build-cache/
+artifacts/
+payload/
+runtime/
+**/.tools/
+**/*.log
+**/*.lnk
+**/Conversations/
+**/output/
+**/workspaces/
+RinaDesk/app/src-tauri/tauri.package.json

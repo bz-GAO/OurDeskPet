@@ -1,0 +1,96 @@
+[
+  {
+    "entity_id": "cast.mayu",
+    "source": "まゆち",
+    "kind": "nickname",
+    "suggested_target": null,
+    "status": "needs_review",
+    "enabled": false,
+    "note": "已找到日文称呼的人物归属佐证；中文社区偏好仍未确认，保留待审，不硬译成全名。",
+    "evidence": [
+      "mayu_report"
+    ]
+  },
+  {
+    "entity_id": "cast.kaori",
+    "source": "かおりん",
+    "kind": "nickname",
+    "suggested_target": null,
+    "status": "needs_review",
+    "enabled": false,
+    "note": "已找到日文称呼的人物归属佐证；中文社区偏好仍未确认，保留待审，不硬译成全名。",
+    "evidence": [
+      "hinaki_kaori_radio"
+    ]
+  },
+  {
+    "entity_id": "cast.akari",
+    "source": "あかりん",
+    "kind": "nickname",
+    "suggested_target": null,
+    "status": "needs_review",
+    "enabled": false,
+    "note": "日语爱称候选；须确认人物归属和中文称呼。未加入正式别名集合，不自动套用全名。"
+  },
+  {
+    "entity_id": "cast.coco",
+    "source": "ここちゃん",
+    "kind": "nickname",
+    "suggested_target": null,
+    "status": "needs_review",
+    "enabled": false,
+    "note": "日语爱称候选；须确认人物归属和中文称呼。未加入正式别名集合，不自动套用全名。"
+  },
+  {
+    "entity_id": "cast.shu",
+    "source": "しゅうちゃん",
+    "kind": "nickname",
+    "suggested_target": null,
+    "status": "needs_review",
+    "enabled": false,
+    "note": "日语爱称候选；须确认人物归属和中文称呼。未加入正式别名集合，不自动套用全名。"
+  },
+  {
+    "entity_id": "cast.akina",
+    "source": "ほーみん",
+    "kind": "nickname",
+    "suggested_target": null,
+    "status": "needs_review",
+    "enabled": false,
+    "note": "已找到日文称呼的人物归属佐证；中文社区偏好仍未确认，保留待审，不硬译成全名。",
+    "evidence": [
+      "akina_official"
+    ]
+  },
+  {
+    "entity_id": "character.kasumi",
+    "source": "かすみん",
+    "kind": "nickname",
+    "suggested_target": "霞霞",
+    "status": "needs_review",
+    "enabled": false,
+    "note": "确认你偏好的中文爱称后再收入 aliases。"
+  },
+  {
+    "entity_id": "character.rina",
+    "source": "りなりー",
+    "kind": "nickname",
+    "suggested_target": null,
+    "status": "needs_review",
+    "enabled": false,
+    "note": "角色爱称候选；不可与声优的‘切咪’混用。"
+  },
+  {
+    "entity_id": "cast.aguri",
+    "source": "あぐ",
+    "kind": "nickname",
+    "suggested_target": "阿兔",
+    "status": "needs_review",
+    "enabled": false,
+    "evidence": [
+      "user_nickname_clues",
+      "aguri_radio"
+    ],
+    "note": "用户线索；官方节目名あぐのん只是间接佐证，本轮未确认独立あぐ的充分用例。不要把较长あぐぽん截断为あぐ。"
+  }
+]

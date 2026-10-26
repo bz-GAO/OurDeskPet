@@ -1,0 +1,35 @@
+# 复制到 %LOCALAPPDATA%\RinaTomo\config.toml 后填写真实值。
+# 本文件只作为 schema 示例，不要写入真实 QQ 号、token 等信息。
+
+[connection]
+url = "ws://127.0.0.1:3001"
+access_token = ""
+reconnect_delay = 3.0
+
+[bot]
+name = "rinatomo"
+echo = false
+
+[features]
+ping = true
+
+# Text LLM responder. The API key lives in the environment (see .env.example),
+# never in this file. Each trigger is a single-turn request; only the numeric
+# daily usage counter is persisted beside the user config.
+[llm]
+enabled = false
+model = "qwen-turbo"
+timeout_seconds = 30.0
+max_tokens = 512
+daily_token_budget = 200000
+min_reply_interval = 0.0
+max_input_chars = 2000
+max_concurrent_requests = 2
+
+# Default-deny whitelist: anyone not listed here gets silence, never a reply.
+# The same gate applies to all features: admins are always allowed; other
+# private users and groups must be explicitly listed.
+[permissions]
+admin_users = []             # fill your own main QQ account; full access everywhere
+private_whitelist = []       # non-admin users allowed in private chat
+enabled_groups = []          # groups where bot features are active; empty = silent in all groups

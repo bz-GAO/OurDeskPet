@@ -1,0 +1,17 @@
+/* 输入行的圆形麦克风按钮（对话页引用；弹窗样式也在本文件） */
+.dialogue-voice-button{flex:none;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;padding:0;border:1px solid #e4adc9;border-radius:999px;background:#faedf5;color:#7c5d76;cursor:pointer}
+.dialogue-voice-button:hover:not(:disabled){background:#f7dfef}
+.dialogue-voice-button:disabled{opacity:.5;cursor:default}
+.dialogue-voice-button svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* 语音弹窗：在 ConfirmDialog 视觉基础上的补充样式 */
+.voice-dialog .voice-body{display:flex;flex-direction:column;gap:10px}
+.voice-dialog .voice-hint{margin:0;color:#8a94a6;font-size:13px;text-align:center}
+.voice-dialog .voice-hint[data-phase=recording]{color:#a34d78}
+.voice-dialog .voice-transcript{min-height:96px;max-height:220px;overflow:auto;box-sizing:border-box;padding:12px 14px;border:1px solid #ecd9e6;border-radius:12px;background:#fff;font-size:15px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
+.voice-dialog .voice-transcript:empty::before{content:'…';color:#b9c2d0}
+.voice-dialog .voice-transcript[data-phase=done]{border-color:#dcead9}
+.voice-dialog .voice-error{margin:0;color:#b3261e;font-size:13px}
+.voice-actions{justify-content:space-between}
+.voice-actions .voice-primary[data-phase=recording]{background:#fbdce8;border-color:#d987ab}
+.voice-actions .voice-primary[data-phase=starting],.voice-actions .voice-primary[data-phase=finishing]{opacity:.7}

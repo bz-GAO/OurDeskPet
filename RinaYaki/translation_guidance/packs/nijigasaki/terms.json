@@ -1,0 +1,179 @@
+[
+  {
+    "id": "term.franchise",
+    "kind": "franchise",
+    "source": "ラブライブ！",
+    "target": "Love Live!",
+    "match": "exact_name",
+    "aliases": [
+      {
+        "source": "ラブライブ",
+        "target": "Love Live!",
+        "kind": "orthographic_variant",
+        "match": "context_required"
+      },
+      {
+        "source": "LoveLive!",
+        "target": "Love Live!",
+        "kind": "orthographic_variant",
+        "match": "context_required"
+      },
+      {
+        "source": "lovelive",
+        "target": "Love Live!",
+        "kind": "orthographic_variant",
+        "match": "context_required"
+      },
+      {
+        "source": "Love Live!",
+        "target": "Love Live!",
+        "kind": "orthographic_variant",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "名称保留品牌写法；不要直译成‘爱生活’。"
+  },
+  {
+    "id": "term.work",
+    "kind": "work_title",
+    "source": "ラブライブ！虹ヶ咲学園スクールアイドル同好会",
+    "target": "Love Live! 虹咲学园学园偶像同好会",
+    "match": "exact_name",
+    "aliases": [],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "完整作品名，与社团名称分开。"
+  },
+  {
+    "id": "term.club",
+    "kind": "organization",
+    "source": "虹ヶ咲学園スクールアイドル同好会",
+    "target": "虹咲学园学园偶像同好会",
+    "match": "exact_name",
+    "aliases": [],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "正式名称中的同好会不可替换成部。"
+  },
+  {
+    "id": "term.school",
+    "kind": "school",
+    "source": "虹ヶ咲学園",
+    "target": "虹咲学园",
+    "match": "exact_name",
+    "aliases": [],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "学校名称，不自动补充社团名称。"
+  },
+  {
+    "id": "term.nijigasaki",
+    "kind": "short_name",
+    "source": "虹ヶ咲",
+    "target": "虹咲",
+    "match": "context_required",
+    "aliases": [
+      {
+        "source": "虹ケ咲",
+        "target": "虹咲",
+        "kind": "orthographic_variant",
+        "match": "context_required"
+      },
+      {
+        "source": "虹咲",
+        "target": "虹咲",
+        "kind": "orthographic_variant",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "可指作品/学校/相关团体；保留简称，不强行扩展。"
+  },
+  {
+    "id": "term.nijigaku",
+    "kind": "short_name",
+    "source": "ニジガク",
+    "target": "虹咲",
+    "match": "context_required",
+    "aliases": [
+      {
+        "source": "にじがく",
+        "target": "虹咲",
+        "kind": "orthographic_variant",
+        "match": "context_required"
+      }
+    ],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "本包的简称译法偏好，待用户确认。"
+  },
+  {
+    "id": "term.school_idol",
+    "kind": "general_term",
+    "source": "スクールアイドル",
+    "target": "学园偶像",
+    "match": "context_required",
+    "aliases": [],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "普通概念，不补充具体团体名称。"
+  },
+  {
+    "id": "term.school_idol_club",
+    "kind": "organization_term",
+    "source": "スクールアイドル同好会",
+    "target": "学园偶像同好会",
+    "match": "context_required",
+    "aliases": [],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "与スクールアイドル部分开。"
+  },
+  {
+    "id": "term.school_idol_department",
+    "kind": "organization_term",
+    "source": "スクールアイドル部",
+    "target": "学园偶像部",
+    "match": "context_required",
+    "aliases": [],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "按原文翻译，不视为虹咲社团正式名称的同义词。"
+  },
+  {
+    "id": "term.club_short",
+    "kind": "general_term",
+    "source": "同好会",
+    "target": "同好会",
+    "match": "context_required",
+    "aliases": [],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "不要因启用本包就扩展为虹咲完整团名。"
+  },
+  {
+    "id": "term.idol_department_short",
+    "kind": "general_term",
+    "source": "アイドル部",
+    "target": "偶像部",
+    "match": "context_required",
+    "aliases": [],
+    "evidence": [
+      "official_cast"
+    ],
+    "note": "不自动增加‘学园’或‘虹咲’。"
+  }
+]

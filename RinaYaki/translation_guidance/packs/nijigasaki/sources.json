@@ -1,0 +1,182 @@
+[
+  {
+    "id": "official_cast",
+    "title": "Love Live! 虹咲官方：NEXT SKY 角色与声优名单",
+    "url": "https://www.lovelive-anime.jp/nijigasaki/detail.php?p=01_1853",
+    "supports": "日文角色名、声优名、13组对应及作品/社团正式名称。中文译名是本包偏好，不一概声明为官方。"
+  },
+  {
+    "id": "official_cast_2025",
+    "title": "万代南梦宫音乐官方：完结篇第2章",
+    "url": "https://pylonport.bandainamcomusiclive.co.jp/news/52",
+    "supports": "复核13组日文角色—声优对应，雪菜由林鼓子出演。"
+  },
+  {
+    "id": "licensed_zh",
+    "title": "bilibili 正版第一季页面",
+    "url": "https://www.bilibili.com/bangumi/play/ss34418",
+    "supports": "部分简体中文角色/声优译名。第一季的雪菜声优为旧任，不用于判断现任。"
+  },
+  {
+    "id": "chiemi_nickname",
+    "title": "CDJournal：田中ちえ美",
+    "url": "https://artist.cdjournal.com/a/tanaka-chiemi/934557",
+    "supports": "日文爱称ちぇみー。"
+  },
+  {
+    "id": "user_preference",
+    "title": "用户本次要求",
+    "url": null,
+    "supports": "田中千惠美、切咪、天王寺璃奈、璃奈等用户指定译法。"
+  },
+  {
+    "id": "cast_history",
+    "title": "ORICON：优木雪菜声优交接报道",
+    "url": "https://www.oricon.co.jp/news/2272983/embed/video/?anc=252",
+    "supports": "2023年4月1日起林鼓子接任；历史素材中楠木灯需要独立归类。"
+  },
+  {
+    "id": "moeka_amuse",
+    "title": "Amuse+ 小泉萌香：もえぴ节目名称",
+    "url": "https://amuseplus.jp/mob/arti/artiShw.php?cd=A8700&ima=3718&site=A",
+    "supports": "小泉萌香使用もえぴ爱称；不证明中文定译。",
+    "evidence_level": "primary",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "moeka_bili",
+    "title": "B站小泉生日回页面",
+    "url": "https://www.bilibili.com/video/BV1r2AYehEse/",
+    "supports": "页面节目/关联视频文字中可见小泉萌香、もえぴ、萌P/moep；未读取视频内逐句字幕。",
+    "evidence_level": "community_page",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "aguri_radio",
+    "title": "あぐのんる～むらぼ官方",
+    "url": "https://agunon.secondshot.jp/",
+    "supports": "大西亜玖璃对应あぐぽん。节目名含あぐ，但不能单独证明每个独立あぐ都指她。",
+    "evidence_level": "primary",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "aguri_bili",
+    "title": "B站あぐのん第149回",
+    "url": "https://www.bilibili.com/video/BV1bsYPztEsT/",
+    "supports": "页面标签同时列出あぐぽん、大西亚玖璃、阿兔嘭。",
+    "evidence_level": "community_page",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "aguri_pon_forum",
+    "title": "日文社区：あぐぽん的谈话氛围",
+    "url": "https://lovelive-petitsoku.com/chat-category/245960/",
+    "supports": "同一讨论内出现ぽんさん与大西亜玖璃，属于社区用法，不是官方别名认证。",
+    "evidence_level": "community_discussion",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "natsumi_interview",
+    "title": "NACHERRY采访",
+    "url": "https://news.livedoor.com/article/detail/21124138/",
+    "supports": "采访中田中以なっちゃん称呼村上奈津实。",
+    "evidence_level": "interview",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "natsumi_maria_bili",
+    "title": "B站：麻圆与奈酱切片",
+    "url": "https://www.bilibili.com/video/BV1JnQWYME6e/",
+    "supports": "标题含麻圆、奈酱，简介标注指出毬亜为嘉宾、村上奈津実节目；仅证明社区称呼归属。",
+    "evidence_level": "community_page",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "miyu_profile",
+    "title": "i☆Ris官方：久保田未夢",
+    "url": "https://iris.dive2ent.com/profile/detail.php?id=1000223",
+    "supports": "官方个人页明确列出昵称みゆたん。",
+    "evidence_level": "primary",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "miyu_bili",
+    "title": "B站：久保田未梦（未梦碳）",
+    "url": "https://www.bilibili.com/video/BV1Ue4y1x7pL/",
+    "supports": "标题直接把久保田未梦与未梦碳并列。",
+    "evidence_level": "community_page",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "maria_x",
+    "title": "指出毬亚本人X公开简介",
+    "url": "https://x.com/sashide_m/with_replies",
+    "supports": "公开检索到的账号简介注明指出毬亜及ちゅんるん；未浏览完整回复列表。",
+    "evidence_level": "primary",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "maria_bili",
+    "title": "B站：麻圆的成人礼回忆",
+    "url": "https://www.bilibili.com/video/BV1XS4y1a7g6/",
+    "supports": "标题/标签明确将麻圆与指出毬亚关联；不证明麻圆是ちゅんるん的逐字音译。",
+    "evidence_level": "community_page",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "hinaki_kaori_radio",
+    "title": "文化放送：前田佳织里谈矢野妃菜喜",
+    "url": "https://www.joqr.co.jp/ag/article/58701/",
+    "supports": "广播报道明确使用ひなきちゃん（矢野妃菜喜），并在前田相关话语中使用かおりん。",
+    "evidence_level": "primary",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "hinaki_bili",
+    "title": "B站：前田谈妃菜喜",
+    "url": "https://www.bilibili.com/video/BV1Re411B7Qg/",
+    "supports": "页面简介/节目列表可见妃菜喜酱；不作为逐句音频对齐证据。",
+    "evidence_level": "community_page",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "mayu_report",
+    "title": "相良茉优现场报道",
+    "url": "https://www.uta-net.com/livereport/report.php?id=541432",
+    "supports": "报道把まゆち与相良茉优关联；中文称呼仍待定。",
+    "evidence_level": "media_report",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "akina_official",
+    "title": "法元明菜官网活动公告",
+    "url": "https://homoto-akina.com/contents/1085133",
+    "supports": "本人官网使用ほーみん作为活动名称中的称呼；不证明中文译名。",
+    "evidence_level": "primary",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  },
+  {
+    "id": "user_nickname_clues",
+    "title": "用户本轮印象与保留要求",
+    "url": null,
+    "supports": "萌P、阿兔嘭、阿兔、奈酱、未梦碳、麻圆等是查证线索而非日文事实证明；ぽんさん保留原文是明确偏好。",
+    "evidence_level": "user_clue",
+    "access": "公开可检索页面文字；非逐句音视频或完整评论核验",
+    "checked_on": "2026-09-25"
+  }
+]
