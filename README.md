@@ -5,7 +5,7 @@
 ## 下载与说明
 
 - [Windows x64 安装包](https://github.com/bz-GAO/OurDeskPet/releases/latest/download/OurDeskPet-0.1.0-x64-setup.exe) · [SHA-256](https://github.com/bz-GAO/OurDeskPet/releases/latest/download/OurDeskPet-0.1.0-x64-setup.sha256)。
-- [PDF 用户手册](https://github.com/bz-GAO/OurDeskPet/releases/latest/download/OurDeskPet用户手册.pdf) · [全部版本](https://github.com/bz-GAO/OurDeskPet/releases)。
+- [PDF 用户手册](https://github.com/bz-GAO/OurDeskPet/releases/latest/download/OurDeskPet-User-Manual.pdf) · [全部版本](https://github.com/bz-GAO/OurDeskPet/releases)。
 - [用户手册](docs/用户手册.md)。
 - [发布构建说明](docs/BUILDING.md)。
 - [使用与资源许可](LICENSE.txt)：项目自有内容未经书面许可不得商用；素材传播须获相应权利人许可；第三方依赖遵循其原许可。
